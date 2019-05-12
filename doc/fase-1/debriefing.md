@@ -10,7 +10,7 @@ Op de website staat informatie over het onderwerp met minimaal 2 paginas over bi
 
 ### Wat wordt er gevraagd
 
-De website moet bestaan uit:
+De website bestaat uit:
 
 - Home pagina die een aantrekkelijke uitstraling heeft, een duidelijke indeling, een lijst met de laatste nieuwsberichten over het        onderwerp. Nieuws berichten bestaan uit title, datum en een foto en zijn netjes gesorteerd op datum.
 
@@ -22,7 +22,7 @@ De website moet bestaan uit:
 
 - Extra features zijn toegestaan.
 
-- UXD eisen
+- User Experience Design eisen
   - Er zijn wireframes voor alle pagina's
   - De website is resposive voor Desktop, tablet en mobiel.
   - Elke pagina heeft in iedergeval de volgende elementen:
