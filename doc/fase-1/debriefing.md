@@ -4,7 +4,7 @@
 
 ### De Opdracht MyBand
 
-De opdracht is om een website te maken met één onderwerp (Dat onderwerp kan over val alles zijn). 
+De opdracht is om een website te maken met één onderwerp (Dat onderwerp kan over van alles zijn). 
 Op de website staat informatie over het onderwerp met minimaal 2 paginas over bijvoorbeeld geschiedenis, nieuwsberichten over het onderwerp, biografie of een fotopagina.
 
 
