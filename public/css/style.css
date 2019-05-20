@@ -3,6 +3,13 @@
 *   class: MD1A
 */
 
+.preload * {
+	-webkit-transition: none !important;
+	-moz-transition: none !important;
+	-ms-transition: none !important;
+	-o-transition: none !important;
+}
+
 /* ------------ reset browser css ------------ */
 
 html, body, div, span, applet, object, iframe,
@@ -81,14 +88,24 @@ img {
 ::-webkit-scrollbar { display: none; }
 
 @font-face {
-	font-family: "Beaufort bold";
+	font-family: "Beaufort";
 	src: url(../fonts/Beaufort-Bold.ttf);
 	font-weight: 700;
+}
+
+html {
+	height: 100%;
 }
 
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	background: #17456D;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 button, input {
@@ -121,18 +138,34 @@ a {
 	border-bottom-width: 1px;
 }
 
+.btn-open {
+	position: relative;
+	color: #fff;
+	background: none;
+	border: solid 2px #fff;
+	text-transform: uppercase;
+	font-size: 2.6vw;
+	padding: 10px 20px;
+	transition: all .2s;
+}
+
+.btn-open:hover {
+	transform: scale(1.1);
+}
+
 /* ------------ layout css ------------ */
 
 /* -- header -- */
 
 header {
 	position: fixed;
+	width: 100%;
 }
 
 header nav a {
 	position: relative;
 	text-transform: uppercase;
-	padding: 20px;
+	padding: 15px 10px;
 	margin: 0 2vw;
 	transition: transform .3s;
 }
@@ -154,12 +187,19 @@ header nav a:hover::after {
 }
 
 header nav a.onpage::after {
-	transform: scale(1);
+	transform: scale(1) !important;
 }
 
 header img {
 	cursor: pointer;
-	max-width: 50px;
+	max-width: 60px;
+}
+
+.menu-icon, .logo {
+	border-radius: 50%;
+}
+.menu-icon:hover, .logo:hover {
+	
 }
 
 /* desktop menu */
@@ -168,12 +208,12 @@ header img {
 
 .header-dropdown {
 	position: fixed;
-	top: -246px;
+	top: -100vh;
 	background: #17456D;
 	text-align: center;
 	/* z-index: 1; */
 	width: 100%;
-	transition: .5s;
+	transition: .5s ease;
 	padding: 10px 0;
 }
 
@@ -199,27 +239,43 @@ main {
 }
 
 .article-active {
-	background-image: url(../img/downloads\ \(2\).jpg);
-	background-position: center;
-	background-size: 251%;
-	background-repeat: no-repeat;
-	width: 100%;
-	padding: 372px 0;
+	height: 100vh;
 	font-size: 1.3em;
 	color: #F7A71F;
+	font-family: "Beaufort";
 	text-align: center;
-	font-family: "Beaufort bold";
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .article-active h1 {
 	text-transform: uppercase;
-	font-size: 1.8em;
+	font-size: 3em;
 }
+
 .article-active h2 {
 	color: #fff;
+	font-size: 1.5em;
 }
 .article-active h2::first-letter {
 	text-transform: uppercase;
+}
+
+.article-active button {
+	margin-top: 6vh;
+	font-size: 1.2em;
+}
+
+.article-active::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	opacity: .52;
+	background: url(../img/bjerg.png) no-repeat;
+	background-position: center;
+	width: 100%;
+	height: 100%;
 }
 
 /* -- footer -- */
@@ -236,7 +292,7 @@ main {
 		display: none;
 	}
 
-	.menu-icon,	.logo {
+	.menu-icon,	.logo {w
 		display: inline-block;
 		vertical-align: middle;
 		margin: 10px;
@@ -254,7 +310,7 @@ main {
 	}
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 900px) {
 	header {
 		background: #17456D;
 	}
@@ -262,6 +318,8 @@ main {
 	header * {
 		display: inline-block;
 		vertical-align: middle;
+		text-align: center;
+		padding: 10px 0;
 	}
 
 	.mobile {
@@ -270,6 +328,10 @@ main {
 
 	.desktop {
 		display: block;
+	}
+
+	.logo, .login {		
+		margin: 3px;
 	}
 
 	.article-active {

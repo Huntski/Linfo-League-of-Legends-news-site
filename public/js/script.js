@@ -1,3 +1,10 @@
+let body = document.querySelector('body');
+setTimeout(() => {
+    body.classList.remove('preload');
+    console.log(body.classList);
+    console.log('hello threre')
+}, 1);
+
 // dropdown menu
 
 let menu_icon = document.querySelector('.menu-icon');

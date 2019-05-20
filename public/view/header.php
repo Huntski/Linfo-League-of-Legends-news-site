@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Linfo</title>
-    <link rel="icon" href="img/linfo-logo.png">
+    <title>linfo</title>
+    <link rel="icon" href="img/linfo-logof.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="perset-load">
+<body class="preload">
     <header>
         <div class="mobile">
             <div class="menu-icon">
@@ -21,7 +21,7 @@
 
             <div class="header-dropdown">
                 <div>
-                    <img src="img/linfo-logo.png" alt="linfo">
+                    <a href=""><img src="img/linfo-logo.png" alt="linfo"></a>
                 </div>
                 <button class="btn-active">login</button>
                 <nav>
@@ -47,7 +47,7 @@
                     <li><a href="">events</a></li>
                 </ul>
             </nav>
-            <button class="btn-active">login</button>
+            <button class="btn-active login">login</button>
             <div></div>
         </div>
     </header>
