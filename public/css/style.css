@@ -1,0 +1,278 @@
+/*
+*   author: Wiebe Ranzijn / Huntski
+*   class: MD1A
+*/
+
+/* ------------ reset browser css ------------ */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+img {
+	max-width: 300px;
+}
+
+/* ------------ global css ------------ */
+
+/*
+	colors:
+		orange {
+			#F7A71F dark orange
+			#FFC45F light orange
+		}
+
+		blue {
+			#17456D darkest blue
+			#1B5C94
+			#2677BE
+			#4FADFF
+			#9BD1FF
+			#C0E2FF lighest blue
+		}
+*/
+
+/* remove scrollbar */
+::-webkit-scrollbar { display: none; }
+
+@font-face {
+	font-family: "Beaufort bold";
+	src: url(../fonts/Beaufort-Bold.ttf);
+	font-weight: 700;
+}
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: #17456D;
+}
+
+button, input {
+	border: none;
+	background: none;
+	padding: 5px 10px;
+	outline: none;
+}
+
+/* cursor default */
+button, a { cursor: pointer; }
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.btn-active {
+	color: #fff;
+	background: #FFC45F;
+	border-bottom: solid 4px #F7A71F;
+	transition: .1s;
+	font-size: 0.9em;
+	padding: 10px 15px;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+.btn-active:active {
+	margin-top: 3px !important;
+	border-bottom-width: 1px;
+}
+
+/* ------------ layout css ------------ */
+
+/* -- header -- */
+
+header {
+	position: fixed;
+}
+
+header nav a {
+	position: relative;
+	text-transform: uppercase;
+	padding: 20px;
+	margin: 0 2vw;
+	transition: transform .3s;
+}
+
+header nav a::after {
+	content: "";
+  	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 3px;
+	background: #fff;
+	transform: scale(0, 1);
+	transition: transform 200ms ease;
+	color: #000;
+}
+header nav a:hover::after {
+  	transform: scale(1);
+}
+
+header nav a.onpage::after {
+	transform: scale(1);
+}
+
+header img {
+	cursor: pointer;
+	max-width: 50px;
+}
+
+/* desktop menu */
+
+/* mobile menu */
+
+.header-dropdown {
+	position: fixed;
+	top: -246px;
+	background: #17456D;
+	text-align: center;
+	/* z-index: 1; */
+	width: 100%;
+	transition: .5s;
+	padding: 10px 0;
+}
+
+.header-dropdown img {
+	margin: 15px auto;
+}
+
+.header-dropdown nav * {
+	margin-top: 7px;
+	display: inline-block;
+}
+
+/* -- main -- */
+
+main {
+	width: 100%;
+}
+
+/* home page */
+
+.home {
+	width: 100%;
+}
+
+.article-active {
+	background-image: url(../img/downloads\ \(2\).jpg);
+	background-position: center;
+	background-size: 251%;
+	background-repeat: no-repeat;
+	width: 100%;
+	padding: 372px 0;
+	font-size: 1.3em;
+	color: #F7A71F;
+	text-align: center;
+	font-family: "Beaufort bold";
+}
+
+.article-active h1 {
+	text-transform: uppercase;
+	font-size: 1.8em;
+}
+.article-active h2 {
+	color: #fff;
+}
+.article-active h2::first-letter {
+	text-transform: uppercase;
+}
+
+/* -- footer -- */
+
+/* -- media querys -- */
+
+@media screen and (max-width: 900px) {
+	.mobile {
+		display: block;
+		margin: 0 auto;
+	}
+
+	.desktop {
+		display: none;
+	}
+
+	.menu-icon,	.logo {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 10px;
+		position: fixed;
+		top: 0;
+	}
+
+	.menu-icon {
+		left: 0;
+		transition: transform .3s;
+	}
+
+	.logo {
+		right: 0;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	header {
+		background: #17456D;
+	}
+
+	header * {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.mobile {
+		display: none;
+	}
+
+	.desktop {
+		display: block;
+	}
+
+	.article-active {
+		background-size: 100%;
+	}
+}
