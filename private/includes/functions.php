@@ -1,7 +1,6 @@
 <?php
 
-function dbConnect($config)
-{
+function dbConnect($config) {
 
     try {
         $dsn = 'mysql:host=' . $config['DB_HOST'] . ';dbname=' . $config['DB_NAME'];
@@ -11,7 +10,7 @@ function dbConnect($config)
         return $connection;
 
     } catch (\PDOException $e) {
-        echo 'Fout bij maken van database verbinding: ' . $e->getMessage();
+        echo 'something not ok: ' . $e->getMessage();
     }
 
 }

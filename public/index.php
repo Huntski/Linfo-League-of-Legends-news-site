@@ -1,7 +1,7 @@
 <?php
 
-include "view/header.php";
+require __DIR__ . "/../private/controllers/get_uri.php";
 
-include "view/main-example.php";
+$routes = getRoutes();
 
-include "view/footer.php";
+print_r($routes);
