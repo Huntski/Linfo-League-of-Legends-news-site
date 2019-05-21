@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>linfo</title>
-    <link rel="icon" href="img/linfo-logof.png">
+    <link rel="icon" href="img/linfo-logo.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="preload">
@@ -16,7 +16,7 @@
             </div>
 
             <div class="logo">
-                <img src="img/linfo-logo.png" alt="linfo">
+                <a href=""><img src="img/linfo-logo.png" alt="linfo"></a>
             </div>
 
             <div class="header-dropdown">
@@ -37,7 +37,7 @@
 
         <div class="desktop">
             <div class="logo">
-                <img src="img/linfo-logo.png" alt="linfo">
+                <a href=""><img src="img/linfo-logo.png" alt="linfo"></a>
             </div>
             <nav>
                 <ul>

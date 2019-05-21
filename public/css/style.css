@@ -133,10 +133,6 @@ a {
 	text-transform: uppercase;
 	font-weight: 500;
 }
-.btn-active:active {
-	margin-top: 3px !important;
-	border-bottom-width: 1px;
-}
 
 .btn-open {
 	position: relative;
@@ -144,13 +140,12 @@ a {
 	background: none;
 	border: solid 2px #fff;
 	text-transform: uppercase;
-	font-size: 2.6vw;
-	padding: 10px 20px;
-	transition: all .2s;
+	font-size: 1.0em;
+	padding: 15px 25px;
+	transition: all .9s;
 }
-
 .btn-open:hover {
-	transform: scale(1.1);
+	color: #FFC45F;
 }
 
 /* ------------ layout css ------------ */
@@ -179,7 +174,7 @@ header nav a::after {
 	height: 3px;
 	background: #fff;
 	transform: scale(0, 1);
-	transition: transform 200ms ease;
+	transition: transform .2s ease;
 	color: #000;
 }
 header nav a:hover::after {
@@ -197,9 +192,6 @@ header img {
 
 .menu-icon, .logo {
 	border-radius: 50%;
-}
-.menu-icon:hover, .logo:hover {
-	
 }
 
 /* desktop menu */
@@ -263,19 +255,30 @@ main {
 }
 
 .article-active button {
-	margin-top: 6vh;
-	font-size: 1.2em;
+	margin-top: 8vh;
 }
 
-.article-active::after {
+.article-bg::after {
 	content: "";
 	position: absolute;
 	z-index: -1;
-	opacity: .52;
-	background: url(../img/bjerg.png) no-repeat;
-	background-position: center;
+	opacity: .32;
+	background-position: center !important;
+	background-size: auto 100% !important;
 	width: 100%;
 	height: 100%;
+}
+
+.article-list {
+	display: flex;
+}
+
+article {
+	width: 200px;
+	height: 200px;
+	background-repeat: no-repeat !important;
+	background-size: auto, 100%;
+	background-position: center;
 }
 
 /* -- footer -- */
@@ -283,6 +286,14 @@ main {
 /* -- media querys -- */
 
 @media screen and (max-width: 900px) {
+
+	/* --- global css --- */
+
+	.btn-active:active {
+		margin-top: 3px !important;
+		border-bottom-width: 1px;
+	}
+
 	.mobile {
 		display: block;
 		margin: 0 auto;
@@ -292,12 +303,19 @@ main {
 		display: none;
 	}
 
-	.menu-icon,	.logo {w
+	/* --- layout css --- */
+
+	.menu-icon,	.logo {
 		display: inline-block;
 		vertical-align: middle;
 		margin: 10px;
 		position: fixed;
 		top: 0;
+		transition: .2s ease;
+		opacity: .8;
+	}
+	.menu-icon:hover, .logo:hover {
+		opacity: 1;
 	}
 
 	.menu-icon {
@@ -311,6 +329,16 @@ main {
 }
 
 @media screen and (min-width: 900px) {
+
+	/* --- global css --- */
+
+	.btn-active:active {
+		margin-top: 4px !important;
+		border-bottom-width: 2px;
+	}
+
+	/* --- layout css --- */
+
 	header {
 		background: #17456D;
 	}
@@ -330,11 +358,7 @@ main {
 		display: block;
 	}
 
-	.logo, .login {		
+	.logo, .login {
 		margin: 3px;
-	}
-
-	.article-active {
-		background-size: 100%;
 	}
 }

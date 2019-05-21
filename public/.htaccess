@@ -5,6 +5,7 @@
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  Options -MultiViews
 
   # skip existent files
   RewriteCond %{REQUEST_FILENAME} -f
@@ -23,9 +24,10 @@
   RewriteCond %{REQUEST_URI} ^(.*)\..*$
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)\..*$ - [R=404,L]
-  
+
   # no, so we redirect to our front web controller
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)$ index.php [QSA,L]
+
+  ErrorDocument 404 index.php
 </IfModule>
-   
