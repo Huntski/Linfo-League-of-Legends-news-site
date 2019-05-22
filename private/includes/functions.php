@@ -1,15 +1,16 @@
 <?php
 
-function dbConnect($config) {
+function dbConnect() {
 
     try {
-        $dsn = 'mysql:host=' . $config['DB_HOST'] . ';dbname=' . $config['DB_NAME'];
+        $config = require __DIR__ . "/db_config.php";
+        $dsn = 'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'];
 
-        $connection = new PDO($dsn, $config['DB_USER'], $config['DB_PASSWORD']);
+        $connection = new PDO($dsn, $config['db_usern'], $config['db_passw']);
 
         return $connection;
 
-    } catch (\PDOException $e) {
+    } catch (PDOException $e) {
         echo 'something not ok: ' . $e->getMessage();
     }
 

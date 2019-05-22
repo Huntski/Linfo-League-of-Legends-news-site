@@ -1,7 +1,29 @@
 <?php
 
-require __DIR__ . "/../private/controllers/get_uri.php";
+require __DIR__ . "/../private/includes/router.php";
 
-$routes = getRoutes();
+$router = new router;
 
-print_r($routes);
+$routes = $router->getRoutes();
+
+$controller = $router->getController($routes);
+
+if ($controller) {
+    try {
+        $linkToController = "/../private/controllers/" . $controller . ".php";
+        require __DIR__ . $linkToController;
+
+        $controller = new $controller;
+        if (isset($routes[1])) {
+            $controller->loadPage($routes[1]);
+        } else {
+            $controller->loadPage();
+        }
+    } catch (Exception $e) {
+        echo $e;
+        echo "<br> $controller";
+    }
+} else {
+    echo "<h3 style='text-align: center;'>404 no page found</h3>";
+    die();
+}
