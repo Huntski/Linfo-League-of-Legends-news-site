@@ -1,17 +1,19 @@
 <?php
 
 class HomeController {
-    function loadPage($option) {
-        // print_r(scandir(""));
-        // require __DIR__ . "/../private/models/articles.php";
-        require "../private/models/get_articles.php";
+    function loadPage($option = null) {
 
+        require "../private/models/get_articles.php";
         $aritlce = new articles;
+
         if ($option) {
-            echo $option;
+            $article_info = $aritlce->getArticle($option);
+        } else {
+            $allArticles = $aritlce->getAllArticles();
         }
 
-        echo "test";
-        var_dump($option);
+        echo "<pre>";
+        var_dump($allArticles_info);
+        echo "</pre>";
     }
 }

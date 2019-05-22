@@ -20,7 +20,7 @@ class router {
         }
 
         // return array with all routes
-        if (!count($routes)) {
+        if (count($routes) === 0) {
             array_push($routes, "home");
         }
         return $routes;

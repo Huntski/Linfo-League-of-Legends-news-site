@@ -1,35 +1,31 @@
 <?php
 
-class articles {
-    function getAllArticles() {
-
+class events {
+    function getAllEvents() {
+        
         require "../private/includes/functions.php";
         $db = dbConnect();
 
-        $sql = "SELECT a_title, a_par, a_img_links FROM linfo_articles LIMIT 15";
+        $sql = "SELECT * FROM linfo_events";
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {
             return "something not ok";
         }
-        
         return $sm->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    function getArticle($id = null) {
 
-        if (!$id) {
-            return;
-        }
+    function getEvent($id = null) {
 
         require "../private/includes/functions.php";
         $db = dbConnect();
-        
-        $sql = "SELECT a_title, a_par FROM linfo_articles WHERE a_id = $id";
+
+        $sql = "SELECT * FROM linfo_events";
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {
             return "something not ok";
         }
-
+        
         return $sm->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
