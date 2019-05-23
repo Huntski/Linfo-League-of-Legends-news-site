@@ -27,9 +27,9 @@
                 <nav>
                     <ul>
                         <li><a href="" class="onpage">home</a></li>
-                        <li><a href="">players</a></li>
-                        <li><a href="">news</a></li>
-                        <li><a href="">events</a></li>
+                        <li><a href="players">players</a></li>
+                        <li><a href="news">news</a></li>
+                        <li><a href="events">events</a></li>
                     </ul>
                 </nav>
             </div>

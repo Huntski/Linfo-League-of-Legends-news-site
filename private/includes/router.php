@@ -31,7 +31,7 @@ class router {
             case "players":
                 $controller = "PlayersController";
                 break;
-            case "articles":
+            case "news":
                 $controller = "ArticlesController";
                 break;
             case "events":

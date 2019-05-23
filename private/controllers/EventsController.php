@@ -2,7 +2,7 @@
 
 class EventsController {
     function loadPage($option = null) {
-        
+
         require "../private/models/get_events.php";
         $event = new events;
 
@@ -19,5 +19,6 @@ class EventsController {
             var_dump($allEvents_info);
         }
         echo "</pre>";
+        echo "option: $option ;<br>";
     }
 }

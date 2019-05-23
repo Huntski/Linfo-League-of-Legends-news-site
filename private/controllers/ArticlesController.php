@@ -8,9 +8,7 @@ class ArticlesController {
         if ($option) {
             $article_info = $article->getArticle($option);
         } else {
-            $article_info = $article->getAllArticles();
+            $allArticles_info = $article->getAllArticles();
         }
-        print_r($article_info);
-        return;
     }
 }

@@ -153,7 +153,6 @@ a {
 /* -- header -- */
 
 header {
-	position: fixed;
 	width: 100%;
 }
 
@@ -231,6 +230,7 @@ main {
 }
 
 .article-active {
+	position: relative;
 	height: 100vh;
 	font-size: 1.3em;
 	color: #F7A71F;
@@ -258,15 +258,14 @@ main {
 	margin-top: 8vh;
 }
 
-.article-bg::after {
-	content: "";
+.article-active img {
 	position: absolute;
+	top: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
 	z-index: -1;
-	opacity: .32;
-	background-position: center !important;
-	background-size: auto 100% !important;
-	width: 100%;
-	height: 100%;
+	opacity: .7;
 }
 
 .article-list {
@@ -276,14 +275,58 @@ main {
 }
 
 article {
-	width: 200px;
-	height: 200px;
-	background-repeat: no-repeat !important;
-	background-size: auto, 100%;
-	background-position: center;
+	position: relative;
+	text-align: center;
+	overflow: hidden;
+	max-width: 400px;
+	max-height: 400px;
+	font-family: "Beaufort";
+}
+
+article div {
+	padding-top: 81%;
+}
+
+article h1 {
+	color: #FFC45F;
+	font-size: 1.3em;
+}
+
+article h2 {
+	color: #fff;
+	font-size: 1.3em;
+}
+
+article img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: -1;
+	opacity: .7;
+	width: 100%;
 }
 
 /* -- footer -- */
+
+footer {
+	width: 100%;
+	background: #17456D;
+	color: #4FADFF;
+}
+
+footer p {
+	margin: 20px 70px;
+}
+
+footer p:nth-child(1) {
+	float: left;
+}
+
+footer p:nth-child(2) {
+	float: right;
+}
 
 /* -- media querys -- */
 
@@ -306,6 +349,10 @@ article {
 	}
 
 	/* --- layout css --- */
+
+	header {
+		position: fixed;
+	}
 
 	.menu-icon,	.logo {
 		display: inline-block;
@@ -349,7 +396,7 @@ article {
 		display: inline-block;
 		vertical-align: middle;
 		text-align: center;
-		padding: 10px 0;
+		padding: 3px 0;
 	}
 
 	.mobile {
@@ -360,7 +407,7 @@ article {
 		display: block;
 	}
 
-	.logo, .login {
-		margin: 3px;
-	}
+	/* main */
+
+	/* footer */
 }

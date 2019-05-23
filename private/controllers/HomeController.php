@@ -2,18 +2,26 @@
 
 class HomeController {
     function loadPage($option = null) {
+        try {
+            require "../private/models/get_articles.php";
 
-        require "../private/models/get_articles.php";
-        $aritlce = new articles;
+            $article = new articles;
 
-        if ($option) {
-            $article_info = $aritlce->getArticle($option);
-        } else {
-            $allArticles = $aritlce->getAllArticles();
+            $allArticles = $article->getAllArticles();
+
+        } catch (Exception $e) {
+            echo "error found: $e";
+            die();
         }
+        // echo "<pre>";
+        // var_dump($allArticles);
+        // echo "</pre>";
+        // die();
 
-        echo "<pre>";
-        var_dump($allArticles_info);
-        echo "</pre>";
+        include "../private/views/templates/header.php";
+
+        include "../private/views/templates/home.php";
+
+        include "../private/views/templates/footer.php";
     }
 }

@@ -2,7 +2,7 @@
 
 class events {
     function getAllEvents() {
-        
+
         require "../private/includes/functions.php";
         $db = dbConnect();
 
@@ -20,12 +20,12 @@ class events {
         require "../private/includes/functions.php";
         $db = dbConnect();
 
-        $sql = "SELECT * FROM linfo_events";
+        $sql = "SELECT e_team1, e_team2, e_location FROM linfo_events";
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {
             return "something not ok";
         }
-        
+
         return $sm->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
