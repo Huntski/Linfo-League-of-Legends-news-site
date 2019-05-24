@@ -1,12 +1,13 @@
 <?php
 
+require "../private/includes/functions.php";
+
 class articles {
     function getAllArticles() {
 
-        require "../private/includes/functions.php";
         $db = dbConnect();
 
-        $sql = "SELECT a_id, a_title, a_par, a_img_links FROM linfo_articles LIMIT 15";
+        $sql = "SELECT a_id, a_title, a_par, a_img_links FROM linfo_articles ORDER BY a_datum desc LIMIT 15";
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {
             return "something not ok";
@@ -21,7 +22,6 @@ class articles {
             return;
         }
 
-        require "../private/includes/functions.php";
         $db = dbConnect();
 
         $sql = "SELECT a_id, a_title, a_par, a_img_links FROM linfo_articles WHERE a_id = $id";

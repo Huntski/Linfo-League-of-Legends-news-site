@@ -5,7 +5,7 @@ setTimeout(() => {
     console.log('hello threre')
 }, 1);
 
-// dropdown menu    
+// dropdown menu
 
 let menu_icon = document.querySelector('.menu-icon');
 let header_dropdown = document.querySelector('.header-dropdown');

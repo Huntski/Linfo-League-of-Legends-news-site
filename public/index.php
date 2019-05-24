@@ -8,6 +8,8 @@ $routes = $router->getRoutes();
 
 $controller = $router->getController($routes);
 
+// echo $controller;
+
 if ($controller) {
     try {
         $linkToController = "/../private/controllers/" . $controller . ".php";
@@ -27,3 +29,5 @@ if ($controller) {
     echo "<h3 style='text-align: center;'>404 no page found</h3>";
     die();
 }
+
+$router->getCoreUrl();

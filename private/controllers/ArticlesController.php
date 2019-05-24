@@ -10,5 +10,11 @@ class ArticlesController {
         } else {
             $allArticles_info = $article->getAllArticles();
         }
+
+        if (isset($allArticles_info) || isset($article_info)) {
+
+            include "../private/views/templates/news.php";
+
+        }
     }
 }

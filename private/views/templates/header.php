@@ -1,3 +1,11 @@
+<?php
+
+$router = new router;
+
+$routes = $router->getRoutes();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +14,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>linfo</title>
     <link rel="icon" href="img/linfo-logo.png">
-    <link rel="stylesheet" href="css/style.css">
+    <?php
+        if (isset($routes[1])) {
+            echo '<link rel="stylesheet" href="../css/style.css">';
+        } else {
+            echo '<link rel="stylesheet" href="css/style.css">';
+        }
+    ?>
 </head>
 <body class="preload">
     <header>
@@ -26,7 +40,7 @@
                 <button class="btn-active">login</button>
                 <nav>
                     <ul>
-                        <li><a href="" class="onpage">home</a></li>
+                        <li><a href="/" class="onpage">home</a></li>
                         <li><a href="players">players</a></li>
                         <li><a href="news">news</a></li>
                         <li><a href="events">events</a></li>

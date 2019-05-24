@@ -37,11 +37,19 @@ class router {
             case "events":
                 $controller = "EventsController";
                 break;
+            case "cms":
+                $controller = "AdminController";
+                break;
             default:
                 $controller = "HomeController";
                 break;
         }
         return $controller;
+    }
+
+    function getCoreUrl() {
+        $basepath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
+        return $basepath;
     }
 
 }
