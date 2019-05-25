@@ -16,7 +16,8 @@ $routes = $router->getRoutes();
     <link rel="icon" href="img/linfo-logo.png">
     <?php
         if (isset($routes[1])) {
-            echo '<link rel="stylesheet" href="../css/style.css">';
+            echo '<link rel="stylesheet" href="../css/style.css">'; 
+            // geen idee waarom die soms niet werkt..
         } else {
             echo '<link rel="stylesheet" href="css/style.css">';
         }
@@ -40,10 +41,10 @@ $routes = $router->getRoutes();
                 <button class="btn-active">login</button>
                 <nav>
                     <ul>
-                        <li><a href="/" class="onpage">home</a></li>
-                        <li><a href="players">players</a></li>
-                        <li><a href="news">news</a></li>
-                        <li><a href="events">events</a></li>
+                        <li><a href="home" class="<?php if ($routes[0] == "home") { echo "onpage"; } ?>">home</a></li>
+                        <li><a href="players" class="<?php if ($routes[0] == "players") { echo "onpage"; } ?>">players</a></li>
+                        <li><a href="news" class="<?php if ($routes[0] == "news") { echo "onpage"; } ?>">news</a></li>
+                        <li><a href="events" class="<?php if ($routes[0] == "events") { echo "onpage"; } ?>">events</a></li>
                     </ul>
                 </nav>
             </div>
@@ -55,10 +56,10 @@ $routes = $router->getRoutes();
             </div>
             <nav>
                 <ul>
-                    <li><a href="">home</a></li>
-                    <li><a href="">players</a></li>
-                    <li><a href="">news</a></li>
-                    <li><a href="">events</a></li>
+                    <li><a href="home" class="<?php if ($routes[0] == "home") { echo "onpage"; } ?>">home</a></li>
+                    <li><a href="players" class="<?php if ($routes[0] == "players") { echo "onpage"; } ?>">players</a></li>
+                    <li><a href="news" class="<?php if ($routes[0] == "news") { echo "onpage"; } ?>">news</a></li>
+                    <li><a href="events" class="<?php if ($routes[0] == "events") { echo "onpage"; } ?>">events</a></li>
                 </ul>
             </nav>
             <button class="btn-active login">login</button>
