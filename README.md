@@ -1,6 +1,6 @@
 ## Linfo
-www.mijnliveomgeving.com is een website van (..jouw naam..) waar gebruikers kunnen (..nut gebruiker..) bedoeld voor (..doelgroep..)
-De website is enigszins te vergelijken met (..concurrentie1..) of (..concurrentie2..) maar toch anders omdat (..uniek aspect..)
+www.minecraft.net is een website van Minecraft waar gebruikers kunnen Minecraft kopen bedoeld voor Minecraft fans
+De website is enigszins te vergelijken met Minecraft.com of https://minecraft.nl/ maar toch anders omdat Minecraft van Minecraft is.
 
 ### Uniek aan dit concept is: 
  * eerste u.s.p. (vul hier in, waarin jouw site anders is dan alle anderen)
