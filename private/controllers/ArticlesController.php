@@ -15,6 +15,7 @@ class ArticlesController {
 
         if (isset($allArticles_info) || isset($article_info)) {
 
+            // var_dump($allArticles_info);
             include "../private/views/templates/news.php";
 
         }
