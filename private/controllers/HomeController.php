@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . "/../private/includes/functions.php";
+
 require "../private/models/get_articles.php";
 
 class HomeController {

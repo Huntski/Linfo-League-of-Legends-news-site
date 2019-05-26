@@ -1,7 +1,5 @@
 <?php
 
-require "../private/includes/functions.php";
-
 class articles {
     function getAllArticles() {
 

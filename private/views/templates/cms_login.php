@@ -7,17 +7,15 @@
     <title>login into cms</title>
 </head>
 <body>
-    <form method="get"></form>
+    <form method="get">
+        <input type="text" name="usern"
+    </form>
 </body>
 </html>
 <?php
 
-if (isset($_GET['submit'])) {
-    checkLogin();
-}
-
-function checkLogin($usern, $passw) {
-    $db = $dbConnect();
+function checkLogin($usern = null, $passw = null) {
+    $db = dbConnect();
 
     $sql = "SELECT username FROM linfo_cms_accounts WHERE usern = $usern";
 
@@ -27,4 +25,10 @@ function checkLogin($usern, $passw) {
         echo "something went wrong";
         die();
     }
+}
+
+if (isset($_GET['submit'])) {
+    $usern = filter_var($_POST['usern'], FILTER_SANITIZE_STRING);
+    $passw = filter_var($_POST['password'], FILTER_SANITIZE_MAGIC_QUOTES);
+    checkLogin($usern, $passw);
 }

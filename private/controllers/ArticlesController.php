@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . "/../private/private/includes/functions.php";
+
 class ArticlesController {
     function loadPage($option = null) {
         require "../private/models/get_articles.php";
