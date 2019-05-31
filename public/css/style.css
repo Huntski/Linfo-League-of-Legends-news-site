@@ -71,7 +71,7 @@ table {
 		}
 
 		blue {
-			#17456D darkest blue
+			#11314e darkest blue
 			#1B5C94
 			#2677BE
 			#4FADFF
@@ -111,6 +111,10 @@ button, input {
 	background: none;
 	padding: 5px 10px;
 	outline: none;
+}
+
+button, input[type=submit], input[type=button] {
+	cursor: pointer;
 }
 
 /* cursor default */
@@ -224,7 +228,26 @@ nav a.onpage::after {
 
 header img {
 	cursor: pointer;
+}
+
+header .logo img {
 	max-width: 60px;
+}
+
+.avatar {
+	position: relative;
+	border-radius: 50%;
+	overflow: hidden;
+	width: 60px !important;
+	height: 60px !important;
+	background: #fff;
+}
+
+.avatar img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 110% !important;
 }
 
 .menu-icon, .logo {
@@ -260,6 +283,7 @@ header img {
 
 main {
 	width: 100%;
+	min-height: 60vh;
 }
 
 /* home active article  */
@@ -294,23 +318,38 @@ main {
 	margin-top: 8vh;
 }
 
+/* search bar */
+
+.search-article {
+	margin-top: 40px;
+}
+
 /* list article */
+
+.article-list-filter {
+	border-bottom: solid 1px #4FADFF;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px 130px;
+	font-size: 1.5em;
+}
 
 .article-list {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	max-width: 1200px;
+	max-width: 1350px;
 	margin: 0 auto;
+	margin-top: 20px;
 }
 
 article {
 	position: relative;
 	text-align: center;
 	overflow: hidden;
-	width: 300px;
-	height: 300px;
-	margin: 20px;
+	width: 350px;
+	height: 350px;
+	margin: 40px;
 	font-family: "Beaufort";
 }
 
@@ -337,6 +376,61 @@ article img {
 	height: 160% !important;
 	width: auto !important;
 	transition: .3s;
+}
+
+/* pagination links */
+
+.pagination {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.pagination a {
+	color: black;
+	padding: 8px 16px;
+	margin: 0 5px;
+	text-decoration: none;
+	transition: background-color .3s;
+}
+
+.pagination a {
+	background: #4FADFF;
+}
+.pagination a:hover {
+	background: #F7A71F;
+}
+
+.pagination a.onpage {
+	background: #F7A71F;
+}
+
+/* form */
+
+form {
+	max-width: 400px;
+	min-height: 560px;
+	text-align: center;
+	line-height: 1.7;
+	margin: 70px auto;
+	background: #1B5C94;
+	padding: 40px 0;
+}
+
+form input {
+	margin: 30px 0;
+	font-size: 1.2em;
+}
+form .btn-active:active {
+	margin-top: 34px !important;
+	border-bottom-width: 1px;
+}
+
+form img {
+	max-width: 50px;
+}
+
+form p {
+	color: #4FADFF;
 }
 
 /* -- footer -- */
@@ -386,7 +480,7 @@ footer p:nth-child(2) {
 		position: fixed;
 	}
 
-	.menu-icon,	.logo {
+	header .menu-icon, header .logo {
 		display: inline-block;
 		vertical-align: middle;
 		margin: 10px;
@@ -395,16 +489,16 @@ footer p:nth-child(2) {
 		transition: .2s ease;
 		opacity: .9;
 	}
-	.menu-icon:hover, .logo:hover {
+	header .menu-icon:hover, header .logo:hover {
 		opacity: 1;
 	}
 
-	.menu-icon {
+	header .menu-icon {
 		left: 0;
 		transition: transform .3s;
 	}
 
-	.logo {
+	header .logo {
 		right: 0;
 	}
 
@@ -418,6 +512,14 @@ footer p:nth-child(2) {
 	article {
 		max-width: 600px;
 		max-height: 600px;
+	}
+
+	.article-list-filter {
+		text-align: center;
+		width: 80%;
+		margin-top: 30px;
+		padding: 0;
+		padding: 35px 0;
 	}
 
 	/* footer */
@@ -438,7 +540,9 @@ footer p:nth-child(2) {
 
 	header {
 		background: #17456D;
+		border-bottom: solid 1px #000;
 		z-index: 1;
+		padding: 5px 0;
 	}
 
 	header * {
@@ -446,6 +550,30 @@ footer p:nth-child(2) {
 		vertical-align: middle;
 		text-align: center;
 		padding: 3px 0;
+	}
+
+	.btn-active:active {
+		margin-top: 23px !important;
+	}
+
+	header .logo, header .login, header .avatar {
+		position: absolute;
+		top: 0;
+	}
+
+	header .logo {
+		left: 0;
+		margin: 1px 30px;
+	}
+
+	header .login {
+		right: 0;
+		margin: 19px 30px;
+	}
+
+	header .avatar {
+		right: 0;
+		margin: 12px 30px;
 	}
 
 	.mobile {
@@ -490,7 +618,7 @@ footer p:nth-child(2) {
 	/* footer */
 
 	footer p {
-		margin: 20px 70px;
+		margin: 45px 70px;
 	}
 
 	footer p:nth-child(1) {

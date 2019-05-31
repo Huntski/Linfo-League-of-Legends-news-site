@@ -4,6 +4,10 @@ $router = new router;
 
 $routes = $router->getRoutes();
 
+$model = new model;
+
+$user_info = $model->getUserInformation($_SESSION['userid']);
+
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +20,7 @@ $routes = $router->getRoutes();
     <link rel="icon" href="img/linfo-logo.png">
     <?php
         if (isset($routes[1])) {
-            echo '<link rel="stylesheet" href="../css/style.css">'; 
-            // geen idee waarom die soms niet werkt..
+            echo '<link rel="stylesheet" href="../css/style.css">';
         } else {
             echo '<link rel="stylesheet" href="css/style.css">';
         }
@@ -31,14 +34,27 @@ $routes = $router->getRoutes();
             </div>
 
             <div class="logo">
-                <a href=""><img src="img/linfo-logo.png" alt="linfo"></a>
+                <a href="./"><img src="img/linfo-logo.png" alt="linfo"></a>
             </div>
 
             <div class="header-dropdown">
                 <div>
-                    <a href=""><img src="img/linfo-logo.png" alt="linfo"></a>
+                    <a href="./"><img src="img/linfo-logo.png" alt="linfo"></a>
                 </div>
-                <button class="btn-active">login</button>
+
+                <?php
+                    if (isset($user_info)) {
+                        echo "
+                        <a href=''>
+                        <div class='avatar'>
+                            <img src='img/".$user_info->user_avatar."'></img>
+                        </div>
+                        </a>";
+                    } else {
+                        echo "<a href='". $router->getCoreUrl() . "login" ."'><button class=\"btn-active login\">login</button></a>";
+                    }
+                ?>
+
                 <nav>
                     <ul>
                         <li><a href="home" class="<?php if ($routes[0] == "home") { echo "onpage"; } ?>">home</a></li>
@@ -52,7 +68,7 @@ $routes = $router->getRoutes();
 
         <div class="desktop">
             <div class="logo">
-                <a href=""><img src="img/linfo-logo.png" alt="linfo"></a>
+                <a href="./"><img src="img/linfo-logo.png" alt="linfo"></a>
             </div>
             <nav>
                 <ul>
@@ -62,7 +78,18 @@ $routes = $router->getRoutes();
                     <li><a href="events" class="<?php if ($routes[0] == "events") { echo "onpage"; } ?>">events</a></li>
                 </ul>
             </nav>
-            <button class="btn-active login">login</button>
-            <div></div>
+
+            <?php
+            if (isset($user_info)) {
+                echo "
+                <a href=''>
+                <div class='avatar'>
+                    <img src='img/".$user_info->user_avatar."'></img>
+                </div>
+                </a>";
+            } else {
+                echo "<a href='". $router->getCoreUrl() . "login" ."'><button class=\"btn-active login\">login</button></a>";
+            }
+            ?>
         </div>
     </header>

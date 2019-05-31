@@ -119,51 +119,86 @@ class model {
 
     // -- user --
 
+    // get all information from user
     function getUserInformation($user_id) {
-        start_session();
-        $user_id = $_SESSION['user'];
 
         $db = dbConnect();
 
-        $sql = "SELECT `user_email`, `user_name` FROM linfo_accounts WHERE `user_id` = $user_id";
+        $sql = "SELECT `user_name`, `user_avatar` FROM `linfo_users` WHERE `user_id` = '$user_id'";
 
         $sm = $db->prepare($sql);
 
         if (!$sm->execute()) {
+            echo "something not ok";
             die();
         }
 
-        return $sm->fetchAll(PDO::FETCH_CLASS);
+        return $sm->fetchAll(\PDO::FETCH_CLASS)[0];
     }
 
-    // check if email exist in database
-    function checkEmail($email) {
-        $db = dbConnect();
+    function loginUser($email, $passw) {
 
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-        $sql = "SELECT * FROM linfo_accounts WHERE email = $email";
-
-        $sm = $db->prepare($sql);
-
-        $result = $db->execute();
-
-        return $result;
-    }
-
-    // check if password connects with email from database
-    function checkPassword($email, $passw) {
         $db = dbConnect();
 
-        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-
-        $sql = "SELECT * FROM linfo_accounts WHERE email = $email";
+        $sql = "SELECT user_passw FROM `linfo_users` WHERE user_email = '$email'";
 
         $sm = $db->prepare($sql);
 
-        $result = $db->execute();
+        if (!$sm->execute()) {
+            echo "something not ok";
+            die();
+        }
 
-        return $result;
+        $passw_id_db = $sm->fetchColumn();
+
+        if (!$passw_id_db) return "login failed";
+
+        if (password_verify($passw, $passw_id_db)) {
+
+            $sql = "SELECT user_id FROM `linfo_users` WHERE user_email = '$email'";
+
+            $sm = $db->prepare($sql);
+
+            if (!$sm->execute()) {
+                echo "something not ok";
+                die();
+            }
+
+            return $sm->fetchColumn();
+        } else {
+            return "login failed";
+        }
     }
 
+    // validate input
+    function validateRegister($email, $passw, $passw_repeat) {
+        $errors = array();
+
+        // check if email is email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            array_push($errors, "email");
+        }
+
+        // check if passw is same as passw repeat
+        $passw = filter_var($passw, FILTER_SANITIZE_STRING);
+        $passw_repeat = filter_var($passw_repeat, FILTER_SANITIZE_STRING);;
+        if ($passw !== $passw_repeat) {
+            array_push($errors, "passw not same");
+        }
+
+        return $errors;
+    }
+
+    // generate random uuid for user
+    function generateUuid() {
+        $data = openssl_random_pseudo_bytes(16);
+        assert(strlen($data) == 16);
+
+        $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version to 0100
+        $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
+
+        return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+    }
 }

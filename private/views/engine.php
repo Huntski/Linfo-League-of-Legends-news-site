@@ -12,7 +12,12 @@ class template_engine {
                 include "templates/news.php";
                 break;
             case "login":
+                if (isset($data[1])) $error = true;
                 include "templates/login.php";
+                break;
+            case "register":
+                if (isset($data[1])) $error = true;
+                include "templates/register.php";
                 break;
             default:
                 $allArticles = $data[1];

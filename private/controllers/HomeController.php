@@ -1,16 +1,18 @@
 <?php
 
-require __DIR__ . "/../private/includes/functions.php";
-
-require "../private/models/get_articles.php";
-
 class HomeController {
     function loadPage($option = null) {
         try {
 
-            $article = new articles;
+            require "../private/models/model.php";
 
-            $allArticles = $article->getAllArticles();
+            $model = new model;
+
+            if (isset($_SESSION['account'])) {
+                $user_info = $model->getUserInformation($_SESSION['account']);
+            }
+
+            $allArticles = $model->getArticles(0, 4);
 
         } catch (Exception $e) {
             echo "error found: $e";
@@ -18,11 +20,11 @@ class HomeController {
         }
 
         if ($allArticles) {
-            include "../private/views/templates/header.php";
+            require "../private/views/engine.php";
 
-            include "../private/views/templates/home.php";
+            $template_engine = new template_engine;
 
-            include "../private/views/templates/footer.php";
+            $template_engine->render("home", $allArticles);
         }
     }
 }

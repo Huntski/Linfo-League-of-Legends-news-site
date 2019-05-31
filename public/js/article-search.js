@@ -1,20 +1,22 @@
-let inp_search_article = document.querySelector(".search-article");
+let inp_search = document.querySelector(".search-article");
 let article_list = document.querySelector(".article-list");
 
-inp_search_article.addEventListener('click', searchForArticle(inp_search_article.value));
+inp_search.addEventListener('keyup', searchForArticle);
 
-function searchForArticle(input) {
-    
+function searchForArticle() {
+
     let xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
-        if (this.status == 4 && this.status == 200) {
-            article_list.innerHTML = this.responseText;
+        if (this.status == 4 || this.status == 200) {
+            console.log(this.responseText);
         }
     }
 
-    let httpString = "php/search_article.php?query=" + input;
+    let httpString = "php/search_article.php?query=" + inp_search.value;
 
     xmlhttp.open("GET", httpString, true);
     xmlhttp.send();
+
+    console.log("search query: " + inp_search.value);
 }

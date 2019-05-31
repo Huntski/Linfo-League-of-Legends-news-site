@@ -32,13 +32,19 @@ class router {
                 $controller = "PlayersController";
                 break;
             case "news":
-                $controller = "ArticlesController";
+                $controller = "NewsController";
                 break;
             case "events":
                 $controller = "EventsController";
                 break;
+            case "login":
+                $controller = "LoginController";
+                break;
             case "cms":
                 $controller = "AdminController";
+                break;
+            case "register":
+                $controller = "RegisterController";
                 break;
             default:
                 $controller = "HomeController";

@@ -1,6 +1,6 @@
 <?php
 
-require "../private/models/get_events.php";
+require "../private/models/model.php";
 
 class EventsController {
     function loadPage($option = null) {

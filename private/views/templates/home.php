@@ -1,8 +1,4 @@
 <?php
-    if (!isset($allArticles)) {
-        die();
-    }
-
     $active_article = $allArticles[0];
 ?>
 
@@ -44,7 +40,7 @@
                             <h2>".$article_par."</h2>
                             </div>
                             <div class=\"img-background\">
-                                <img src=\"img/". explode("[&&]", $article_info->a_img_links)[0] ."\" alt=\"\">
+                                <img src=\"img/". explode(",", $article_info->a_img_links)[0] ."\" alt=\"\">
                             </div>
                         </a>
                     </article>";

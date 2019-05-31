@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . "/../private/private/includes/functions.php";
-
 class AdminController {
 
     function loadPage($option = "") {

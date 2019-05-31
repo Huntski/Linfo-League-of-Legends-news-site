@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require __DIR__ . "/../private/includes/router.php";
 
 $router = new router;
@@ -17,6 +19,8 @@ if ($controller) {
 
         $controller = new $controller;
         if (isset($routes[1])) {
+            chdir(".");
+            echo "AAAAAAAAAAAAA";
             $controller->loadPage($routes[1]);
         } else {
             $controller->loadPage();
