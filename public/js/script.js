@@ -1,8 +1,7 @@
 let body = document.querySelector('body');
 setTimeout(() => {
     body.classList.remove('preload');
-    console.log(body.classList);
-    console.log('hello threre')
+    console.info("Page Preloaded");
 }, 1);
 
 // dropdown menu

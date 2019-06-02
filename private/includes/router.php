@@ -29,16 +29,28 @@ class router {
     function getController($routes) {
         switch ($routes[0]) {
             case "players":
+                if (!isset($_SESSION['userid'])) {
+                    header("location: ./register");
+                }
                 $controller = "PlayersController";
                 break;
             case "news":
+                if (!isset($_SESSION['userid'])) {
+                    header("location: ./register");
+                }
                 $controller = "NewsController";
                 break;
             case "events":
+                if (!isset($_SESSION['userid'])) {
+                    header("location: ./register");
+                }
                 $controller = "EventsController";
                 break;
             case "login":
                 $controller = "LoginController";
+                break;
+            case "settings":
+                $controller = "SettingsController";
                 break;
             case "cms":
                 $controller = "AdminController";
@@ -46,7 +58,13 @@ class router {
             case "register":
                 $controller = "RegisterController";
                 break;
+            case "home":
+                $controller = "HomeController";
+                break;
             default:
+                if (!isset($_SESSION['userid'])) {
+                    header("location: ./welcome");
+                }
                 $controller = "HomeController";
                 break;
         }

@@ -8,6 +8,11 @@ $router = new router;
 
 $routes = $router->getRoutes();
 
+if ($routes[0] == 'logout') {
+    session_destroy();
+    header("location: ./");
+}
+
 $controller = $router->getController($routes);
 
 // echo $controller;

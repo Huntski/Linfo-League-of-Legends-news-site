@@ -117,8 +117,6 @@ class model {
         return $sm->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    // -- user --
-
     // get all information from user
     function getUserInformation($user_id) {
 
@@ -136,28 +134,16 @@ class model {
         return $sm->fetchAll(\PDO::FETCH_CLASS)[0];
     }
 
+    // ------------ login user ------------
+
     function loginUser($email, $passw) {
 
-        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-        $db = dbConnect();
+            $db = dbConnect();
 
-        $sql = "SELECT user_passw FROM `linfo_users` WHERE user_email = '$email'";
-
-        $sm = $db->prepare($sql);
-
-        if (!$sm->execute()) {
-            echo "something not ok";
-            die();
-        }
-
-        $passw_id_db = $sm->fetchColumn();
-
-        if (!$passw_id_db) return "login failed";
-
-        if (password_verify($passw, $passw_id_db)) {
-
-            $sql = "SELECT user_id FROM `linfo_users` WHERE user_email = '$email'";
+            $sql = "SELECT user_passw FROM `linfo_users` WHERE user_email = '$email'";
 
             $sm = $db->prepare($sql);
 
@@ -166,30 +152,101 @@ class model {
                 die();
             }
 
-            return $sm->fetchColumn();
+            $passw_id_db = $sm->fetchColumn();
+
+            if (!$passw_id_db) return "error";
+
+            if (password_verify($passw, $passw_id_db)) {
+
+                $sql = "SELECT user_id FROM `linfo_users` WHERE user_email = '$email'";
+
+                $sm = $db->prepare($sql);
+
+                if (!$sm->execute()) {
+                    echo "something not ok";
+                    die();
+                }
+
+                return $sm->fetchColumn();
+            } else {
+                return "login failed";
+            }
+        }
+    }
+
+    // ------------ register user ------------
+
+    function registerUser($email, $passw, $usern) {
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        $usern = filter_var($usern, FILTER_SANITIZE_STRING);
+        $passw = password_hash($passw, PASSWORD_ARGON2I);
+        $user_id = generateUuid();
+
+        $sql = "INSERT INTO linfo_users (user_id, user_email, user_passw, user_name) VALUES (?, ?, ?, ?)";
+        $data = array($user_id, $email, $passw, $usern);
+
+        $db = dbConnect();
+
+        $sm = $db->prepare($sql);
+
+        if (!$sm->execute($data)) {
+            echo "something not ok";
+            die();
+        }
+
+        $_SESSION['userid'] = $user_id;
+
+        return;
+    }
+
+
+    // ------------ update user settings ------------
+
+    function updateAvatar($user_id, $img) {
+        $target_dir = "img/";
+        $target_file = $target_dir . basename($img["avatar_img"]["name"]);
+        if (move_uploaded_file($_FILES["avatar_img"]["tmp_name"], $target_file)) {
+
+            $sql = "UPDATE linfo_users SET user_avatar = ? WHERE user_id = ?";
+
+            $db = dbConnect();
+
+            $sm = $db->prepare($sql);
+
+            $data = array(basename($img["avatar_img"]["name"]), $user_id);
+
+            if (!$sm->execute($data)) {
+                echo "something not ok";
+                die();
+            }
+
+            return "file uploaded";
         } else {
-            return "login failed";
+            return "Sorry, there was an error uploading your file.";
         }
     }
 
-    // validate input
-    function validateRegister($email, $passw, $passw_repeat) {
-        $errors = array();
+    function updateUsername($user_id, $usern) {
+        $db = dbConnect();
 
-        // check if email is email
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            array_push($errors, "email");
+        $sql = "UPDATE linfo_users SET user_name = ? WHERE user_id = ?";
+
+        $sm = $db->prepare($sql);
+
+        $data = array($usern, $user_id);
+
+        if (!$sm->execute($data)) {
+            echo "something not ok";
+            die();
         }
 
-        // check if passw is same as passw repeat
-        $passw = filter_var($passw, FILTER_SANITIZE_STRING);
-        $passw_repeat = filter_var($passw_repeat, FILTER_SANITIZE_STRING);;
-        if ($passw !== $passw_repeat) {
-            array_push($errors, "passw not same");
-        }
-
-        return $errors;
+        return;
     }
+
+    function updatePassword() {
+        // OwO
+    }
+
 
     // generate random uuid for user
     function generateUuid() {

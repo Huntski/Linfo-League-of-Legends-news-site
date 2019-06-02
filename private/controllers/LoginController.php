@@ -9,11 +9,11 @@ class LoginController {
             header("location: ./");
         }
 
+        require "../private/models/model.php";
+
         $error = false;
 
         if (isset($_POST['email']) && isset($_POST['passw'])) {
-
-            require "../private/models/model.php";
 
             $model = new model;
 
@@ -21,7 +21,7 @@ class LoginController {
 
                 $user_id = $model->loginUser($_POST['email'], $_POST['passw']);
 
-                if ($user_id) {
+                if ($user_id != 'error') {
 
                     // echo "<br> $user_id <br>";
 

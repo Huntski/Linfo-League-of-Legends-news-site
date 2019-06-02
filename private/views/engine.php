@@ -3,6 +3,8 @@
 class template_engine {
     function render(...$data) {
 
+        if (!count($data)) die();
+
         include "templates/header.php";
 
         switch ($data[0]) {
@@ -16,8 +18,11 @@ class template_engine {
                 include "templates/login.php";
                 break;
             case "register":
-                if (isset($data[1])) $error = true;
+                $empty = $data[1];
                 include "templates/register.php";
+                break;
+            case "settings":
+                include "templates/settings.php";
                 break;
             default:
                 $allArticles = $data[1];

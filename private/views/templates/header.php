@@ -6,7 +6,7 @@ $routes = $router->getRoutes();
 
 $model = new model;
 
-$user_info = $model->getUserInformation($_SESSION['userid']);
+if (isset($_SESSION['userid'])) $user_info = $model->getUserInformation($_SESSION['userid']);
 
 ?>
 
@@ -19,11 +19,7 @@ $user_info = $model->getUserInformation($_SESSION['userid']);
     <title>linfo</title>
     <link rel="icon" href="img/linfo-logo.png">
     <?php
-        if (isset($routes[1])) {
-            echo '<link rel="stylesheet" href="../css/style.css">';
-        } else {
-            echo '<link rel="stylesheet" href="css/style.css">';
-        }
+        echo '<link rel="stylesheet" href="css/style.css">';
     ?>
 </head>
 <body class="preload">
@@ -45,7 +41,7 @@ $user_info = $model->getUserInformation($_SESSION['userid']);
                 <?php
                     if (isset($user_info)) {
                         echo "
-                        <a href=''>
+                        <a href='./settings'>
                         <div class='avatar'>
                             <img src='img/".$user_info->user_avatar."'></img>
                         </div>
@@ -82,7 +78,7 @@ $user_info = $model->getUserInformation($_SESSION['userid']);
             <?php
             if (isset($user_info)) {
                 echo "
-                <a href=''>
+                <a href='./settings'>
                 <div class='avatar'>
                     <img src='img/".$user_info->user_avatar."'></img>
                 </div>
