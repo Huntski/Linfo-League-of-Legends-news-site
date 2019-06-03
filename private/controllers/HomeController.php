@@ -8,8 +8,8 @@ class HomeController {
 
             $model = new model;
 
-            if (isset($_SESSION['account'])) {
-                $user_info = $model->getUserInformation($_SESSION['account']);
+            if (isset($_SESSION['userid'])) {
+                $user_info = $model->getUserInformation($_SESSION['userid']);
             }
 
             $allArticles = $model->getArticles(0, 4);

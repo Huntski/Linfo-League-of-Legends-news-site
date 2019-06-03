@@ -21,17 +21,16 @@ class LoginController {
 
                 $user_id = $model->loginUser($_POST['email'], $_POST['passw']);
 
-                if ($user_id != 'error') {
+                if ($user_id) {
 
                     // echo "<br> $user_id <br>";
 
                     $_SESSION['userid'] = $user_id;
 
                     header("location: ./");
+                } else {
+                    $error = true;
                 }
-
-                echo $_POST['email'] . "<br>";
-                echo $_POST['passw'] . "<br>";
             }
         }
 

@@ -20,7 +20,17 @@ class RegisterController {
             if (empty($_POST['usern'])) array_push($empty, "usern");
 
             if (!count($empty)) {
-                $model->registerUser($model->generateUuid(), $_POST['email'], $_POST['passw'], $_POST['usern']);
+                // check if email & username already exist
+
+                if ($model->exist("email", $_POST['email'])) {
+                    echo $model->alert("email already exist");
+
+                } elseif ($model->exist("usern", $_POST['usern'])) {
+                    echo $model->alert("username already exist");
+
+                } else {
+                    $model->registerUser($model->generateUuid(), $_POST['email'], $_POST['passw'], $_POST['usern']);
+                }
             }
         }
 
