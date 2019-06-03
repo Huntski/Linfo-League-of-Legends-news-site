@@ -1,5 +1,7 @@
 <?php
 
+// error_reporting(0);
+
 session_start();
 
 require __DIR__ . "/../private/includes/router.php";
@@ -15,6 +17,8 @@ if ($routes[0] == 'logout') {
 
 $controller = $router->getController($routes);
 
+$page = $router->checkPage($routes);
+
 // echo $controller;
 
 if ($controller) {
@@ -23,13 +27,11 @@ if ($controller) {
         require __DIR__ . $linkToController;
 
         $controller = new $controller;
-        if (isset($routes[1])) {
-            chdir(".");
-            echo "AAAAAAAAAAAAA";
-            $controller->loadPage($routes[1]);
-        } else {
-            $controller->loadPage();
+
+        if ($page) {
+            $controller->loadPage($page);
         }
+        $controller->loadPage();
     } catch (Exception $e) {
         echo $e;
         echo "<br> $controller";

@@ -13,9 +13,10 @@ function searchForArticle() {
         }
     }
 
-    let httpString = "php/search_article.php?query=" + inp_search.value;
+    let httpString = "";
+    let params = "submit=true";
 
-    xmlhttp.open("GET", httpString, true);
+    xmlhttp.open("POST", httpString, true);
     xmlhttp.send();
 
     console.log("search query: " + inp_search.value);

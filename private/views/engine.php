@@ -11,12 +11,22 @@ class template_engine {
             case "news":
                 $article_list = $data[1];
                 $articleCount = $data[2];
+                $page = $data[3];
                 include "templates/news.php";
                 break;
+
+            case "article":
+                $article_info = $data[1];
+                $article_comments = $data[2];
+                $user_info = $data[3];
+                include "templates/article.php";
+                break;
+
             case "login":
                 if (isset($data[1])) $error = true;
                 include "templates/login.php";
                 break;
+
             case "register":
                 $empty = $data[1];
                 include "templates/register.php";

@@ -14,7 +14,8 @@ class model {
         $sql = "SELECT a_id, a_title, a_par, a_img_links FROM linfo_articles ORDER BY a_datum desc LIMIT 15";
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {
-            return "something not ok";
+            echo "something not ok <br>";
+            echo "error-code: 1";
         }
 
         return $sm->fetchAll(PDO::FETCH_CLASS);
@@ -33,10 +34,11 @@ class model {
 
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {
-            return "something not ok";
+            echo "something not ok <br>";
+            echo "error-code: 2";
         }
 
-        return $sm->fetchAll(PDO::FETCH_CLASS);
+        return $sm->fetchAll(PDO::FETCH_CLASS)[0];
     }
 
     // get a list of articles with a certain offset
@@ -48,7 +50,8 @@ class model {
 
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {
-            echo "something not ok (>o<)";
+            echo "something not ok <br>";
+            echo "error-code: 3";
             die();
         }
 
@@ -64,40 +67,80 @@ class model {
 
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {
-            echo "kut php";
+            echo "something not ok <br>";
+            echo "error-code: 4";
             die();
         }
 
         return (int)$sm->fetch()[0];
     }
 
+    // search for article where title is equal to query
     function searchArticle($query) {
 
         $db = dbConnect();
 
-        $sql = "SELECT * FROM linfo_articles WHERE a_title LIKE %$query%";
+        $sql = "SELECT * FROM linfo_articles WHERE a_title LIKE concat('%', :query, '%')";
 
         $sm = $db->prepare($sql);
 
-        if (!$sm->execute()) {
-            return "something went wrong";
+        if (!$sm->execute(array('query' => $query))) {
+            echo "something not ok <br>";
+            echo "error-code: 5";
         }
 
         return $sm->fetchAll(PDO::FETCH_CLASS);
+    }
 
+    function getArticleComments($post_id) {
+
+        $db = dbConnect();
+
+        $sql = "SELECT user_id, comment FROM linfo_comments WHERE post_id = :id ORDER BY `date` DESC";
+
+        $sm = $db->prepare($sql);
+
+        if (!$sm->execute(array('id' => $post_id))) {
+            echo "something not ok <br>";
+            echo "error-code: 6";
+            die();
+        }
+
+        return $sm->fetchAll(PDO::FETCH_CLASS);
+    }
+
+    function postComment($user_info, $article_id, $comment) {
+
+        $comment = htmlspecialchars($comment);
+
+        $db = dbConnect();
+
+        $sql = "INSERT INTO linfo_comments (post_id, `user_id`, comment) VALUES (?, ?, ?)";
+
+        $sm = $db->prepare($sql);
+
+        $data = array($article_id, $user_info->user_id, $comment);
+
+        if (!$sm->execute($data)) {
+            echo "something not ok <br>";
+            echo "error-code: 7";
+            die();
+        }
+
+        return;
     }
 
     // -- events --
 
     function getAllEvents() {
 
-        require "../private/includes/functions.php";
         $db = dbConnect();
 
         $sql = "SELECT * FROM linfo_events";
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {
-            return "something not ok";
+            echo "something not ok <br>";
+            echo "error-code: 8";
         }
         return $sm->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -105,13 +148,13 @@ class model {
 
     function getEvent($id = null) {
 
-        require "../private/includes/functions.php";
         $db = dbConnect();
 
         $sql = "SELECT e_team1, e_team2, e_location FROM linfo_events";
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {
-            return "something not ok";
+            echo "something not ok <br>";
+            echo "error-code: 9";
         }
 
         return $sm->fetchAll(\PDO::FETCH_ASSOC);
@@ -122,12 +165,13 @@ class model {
 
         $db = dbConnect();
 
-        $sql = "SELECT `user_name`, `user_avatar` FROM `linfo_users` WHERE `user_id` = '$user_id'";
+        $sql = "SELECT `user_name`, `user_avatar`, `user_id` FROM `linfo_users` WHERE `user_id` = '$user_id'";
 
         $sm = $db->prepare($sql);
 
         if (!$sm->execute()) {
-            echo "something not ok";
+            echo "something not ok <br>";
+            echo "error-code: 10";
             die();
         }
 
@@ -148,7 +192,8 @@ class model {
             $sm = $db->prepare($sql);
 
             if (!$sm->execute()) {
-                echo "something not ok";
+                echo "something not ok <br>";
+                echo "error-code: 11";
                 die();
             }
 
@@ -163,7 +208,8 @@ class model {
                 $sm = $db->prepare($sql);
 
                 if (!$sm->execute()) {
-                    echo "something not ok";
+                    echo "something not ok <br>";
+                    echo "error-code: 12";
                     die();
                 }
 
@@ -176,13 +222,12 @@ class model {
 
     // ------------ register user ------------
 
-    function registerUser($email, $passw, $usern) {
+    function registerUser($user_id, $email, $passw, $usern) {
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $usern = filter_var($usern, FILTER_SANITIZE_STRING);
         $passw = password_hash($passw, PASSWORD_ARGON2I);
-        $user_id = generateUuid();
 
-        $sql = "INSERT INTO linfo_users (user_id, user_email, user_passw, user_name) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO linfo_users (`user_id`, `user_email`, `user_passw`, `user_name`) VALUES (?, ?, ?, ?)";
         $data = array($user_id, $email, $passw, $usern);
 
         $db = dbConnect();
@@ -190,11 +235,14 @@ class model {
         $sm = $db->prepare($sql);
 
         if (!$sm->execute($data)) {
-            echo "something not ok";
+            echo "something not ok <br>";
+            echo "error-code: 13";
             die();
         }
 
         $_SESSION['userid'] = $user_id;
+
+        header("location: ./");
 
         return;
     }
@@ -216,7 +264,8 @@ class model {
             $data = array(basename($img["avatar_img"]["name"]), $user_id);
 
             if (!$sm->execute($data)) {
-                echo "something not ok";
+                echo "something not ok <br>";
+                echo "error-code: 14";
                 die();
             }
 
@@ -227,6 +276,7 @@ class model {
     }
 
     function updateUsername($user_id, $usern) {
+
         $db = dbConnect();
 
         $sql = "UPDATE linfo_users SET user_name = ? WHERE user_id = ?";
@@ -236,15 +286,31 @@ class model {
         $data = array($usern, $user_id);
 
         if (!$sm->execute($data)) {
-            echo "something not ok";
+            echo "something not ok <br>";
+            echo "error-code: 15";
             die();
         }
 
         return;
     }
 
-    function updatePassword() {
-        // OwO
+    function updatePassword($user_id, $passw) {
+
+        $db = dbConnect();
+
+        $sql = "UPDATE linfo_users SET user_passw = :passw WHERE user_id = :id";
+
+        $sm = $db->prepare($sql);
+
+        $data = array('passw' => password_hash($passw, PASSWORD_ARGON2I), 'id' => $user_id);
+
+        if (!$sm->execute($data)) {
+            echo "something not ok <br>";
+            echo "error-code: 16";
+            die();
+        }
+
+        return;
     }
 
 

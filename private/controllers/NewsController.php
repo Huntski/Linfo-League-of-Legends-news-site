@@ -1,27 +1,18 @@
 <?php
 
-$debug = true;
-
 class NewsController {
-    function loadPage($option = 0) {
-
-        if (!filter_var($option, FILTER_VALIDATE_INT)) { // check if option is int
-            if ($option != 0) {
-                echo "na na naaa.. found something suspicious";
-                die();
-            }
-        }
+    function loadPage($page = 1) {
 
         require "../private/models/model.php";
 
         $model = new model;
 
-        define("LIST_LIMIT", 12);
+        define("LIST_LIMIT", 6);
 
-        if ($option != 1) {
-            $offset = $option;
+        if ($page <= 1) {
+            $offset = $page;
         } else {
-            $offset = $option * LIST_LIMIT;
+            $offset = $page * LIST_LIMIT - LIST_LIMIT;
         }
 
         $article_list = $model->getArticles($offset, LIST_LIMIT);
@@ -34,7 +25,7 @@ class NewsController {
 
             $template_engine = new template_engine;
 
-            $template_engine->render("news", $article_list, $articleCount);
+            $template_engine->render("news", $article_list, $articleCount, $page);
 
         } else {
             echo "no articles found";

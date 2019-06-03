@@ -20,7 +20,7 @@ class RegisterController {
             if (empty($_POST['usern'])) array_push($empty, "usern");
 
             if (!count($empty)) {
-                $model->registerUser($_POST['email'], $_POST['passw'], $_POST['username']);
+                $model->registerUser($model->generateUuid(), $_POST['email'], $_POST['passw'], $_POST['usern']);
             }
         }
 

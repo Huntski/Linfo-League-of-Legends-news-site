@@ -15,7 +15,7 @@
                 }
             ?>
             </h2>
-            <a href="news/<?= $active_article->a_id ?>"><button class="btn-open">read more</button></a>
+            <a href="article-<?= $active_article->a_id ?>"><button class="btn-open">read more</button></a>
         </div>
         <div class="img-background">
             <img src="img/<?= explode("[&&]", $active_article->a_img_links)[0]; ?>" alt="">
@@ -34,7 +34,7 @@
                 }
                 echo "
                     <article>
-                        <a href='news/".$article_info->a_id."'>
+                        <a href='article-".$article_info->a_id."'>
                             <div>
                             <h1>".$article_info->a_title."</h1>
                             <h2>".$article_par."</h2>

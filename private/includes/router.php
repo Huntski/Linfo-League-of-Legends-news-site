@@ -28,39 +28,58 @@ class router {
 
     function getController($routes) {
         switch ($routes[0]) {
+
             case "players":
                 if (!isset($_SESSION['userid'])) {
                     header("location: ./register");
                 }
                 $controller = "PlayersController";
                 break;
-            case "news":
+
+            case strpos($routes[0], "news"):
                 if (!isset($_SESSION['userid'])) {
                     header("location: ./register");
                 }
                 $controller = "NewsController";
                 break;
+
             case "events":
                 if (!isset($_SESSION['userid'])) {
                     header("location: ./register");
                 }
                 $controller = "EventsController";
                 break;
+
             case "login":
                 $controller = "LoginController";
                 break;
+
             case "settings":
+                if (!isset($_SESSION['userid'])) {
+                    header("location: ./register");
+                }
                 $controller = "SettingsController";
                 break;
-            case "cms":
-                $controller = "AdminController";
-                break;
+
             case "register":
                 $controller = "RegisterController";
                 break;
+
             case "home":
                 $controller = "HomeController";
                 break;
+
+            case strpos($routes[0], "article"):
+                if (!isset($_SESSION['userid'])) {
+                    header("location: ./register");
+                }
+                $controller = "ArticleController";
+                break;
+
+            case "cms":
+                $controller = "AdminController";
+                break;
+
             default:
                 if (!isset($_SESSION['userid'])) {
                     header("location: ./welcome");
@@ -74,6 +93,17 @@ class router {
     function getCoreUrl() {
         $basepath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
         return $basepath;
+    }
+
+    function getUrl() {
+        $url = $_SERVER['REQUEST_URI'];
+        return $url;
+    }
+
+    function checkPage($routes) {
+        if (!strpos( $routes[0], "-")) return false;
+
+        return (int)explode("-", $routes[0])[1];
     }
 
 }

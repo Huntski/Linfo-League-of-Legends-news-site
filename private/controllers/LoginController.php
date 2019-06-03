@@ -3,7 +3,7 @@
 $debug = true;
 
 class LoginController {
-    function loadPage($option = null) {
+    function loadPage() {
 
         if (isset($_SESSION['userid'])) {
             header("location: ./");

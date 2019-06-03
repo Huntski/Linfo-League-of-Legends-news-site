@@ -13,8 +13,8 @@
   RewriteRule .* - [QSA,L]
 
   # deny access php files
-  #RewriteCond %{REQUEST_URI} ^.*\.php$
-  #RewriteRule ^.*\.php$ - [R=404,L]
+  RewriteCond %{REQUEST_URI} ^.*\.php$
+  RewriteRule ^.*\.php$ - [R=404,L]
 
   # redirect root access (/) to index.php
   RewriteCond %{REQUEST_URI} ^/$

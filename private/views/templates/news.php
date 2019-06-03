@@ -1,11 +1,11 @@
 <?php
 
-$db = dbConnect();
+// var_dump($article_list);
 
 ?>
 
 <main>
-    <input type="search" class="inp-open search-article" placeholder="Search..">
+    <input type="input" name="search" class="inp-open search-article" placeholder="Search..">
     <h3 class="article-list-filter">Most recent articles<h3>
     <div class="article-list">
         <?php
@@ -19,7 +19,7 @@ $db = dbConnect();
                 }
                 echo "
                     <article>
-                        <a href='news/".$article_info->a_id."'>
+                        <a href='article-".$article_info->a_id."'>
                             <div>
                             <h1>".$article_info->a_title."</h1>
                             <h2>".$article_par."</h2>
@@ -32,11 +32,11 @@ $db = dbConnect();
             }
         } else {
             echo "nothing found <br>";
-            if ($debug) {
-                echo "<pre> <br>";
-                var_dump($article_list);
-                echo "</pre>";
-            }
+            // if ($debug) {
+            //     echo "<pre> <br>";
+            //     var_dump($article_list);
+            //     echo "</pre>";
+            // }
         }
         ?>
     </div>
@@ -45,11 +45,11 @@ $db = dbConnect();
         <?php
         $pages = ceil($articleCount / LIST_LIMIT);
 
-        for ($i = 0; $i < $pages; $i++) {
-            if ($pages) {
-                echo "<a href=''>$i</a>";
+        for ($i = 1; $i <= $pages; $i++) {
+            if ($i == $page) {
+                echo "<a class='onpage' href='./news-$i'>$i</a>";
             } else {
-                echo "<a href=''>$i</a>";
+                echo "<a href='./news-$i'>$i</a>";
             }
         }
 

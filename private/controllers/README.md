@@ -6,4 +6,4 @@ Elke controller handelt een bepaald onderdeel van je website af en bevat functio
 Een article_controller.php bevat bijvoorbeeld de functies:
 
 - **index()** = haalt alle artikelen op via het model en laadt de articles view in om alle artikelen te tonene
-- **show($id)** = haalt het artikel met id = $id op uit de database en geeft dit aan de artikel weergave view 
+- **show($id)** = haalt het artikel met id = $id op uit de database en geeft dit aan de artikel weergave view

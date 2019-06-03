@@ -3,23 +3,18 @@
 require "../private/models/model.php";
 
 class EventsController {
-    function loadPage($option = null) {
+    function loadPage() {
 
         $event = new events;
 
-        if ($option) {
-            $event_info = $event->getEvent();
-        } else {
-            $allEvents_info = $event->getAllEvents();
-        }
+        require "../private/models/model.php";
 
-        echo "<pre>";
-        if ($option) {
-            var_dump($event_info);
-        } else {
-            var_dump($allEvents_info);
-        }
-        echo "</pre>";
-        echo "option: $option ;<br>";
+        $model = new model;
+
+        require "../private/views/engine.php";
+
+        $template_engine = new template_engine;
+
+        $template_engine->render("eventb");
     }
 }
