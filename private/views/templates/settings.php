@@ -12,6 +12,8 @@
         <h2>new password</h2>
         <input class="inp-open" name="passw" type="password" placeholder="password..">
         <input class="inp-open" name="r-passw" type="password" placeholder="repeat password..">
+        <br>
+        <input class="inp-open" name="validate" type="password" placeholder="current password..">
         <input class="btn-active" name="submit" type="submit" value="submit">
         <p><a href="./logout">logout</a></p>
     </form>

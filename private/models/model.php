@@ -18,7 +18,7 @@ class model {
             echo "error-code: 1";
         }
 
-        return $sm->fetchAll(PDO::FETCH_CLASS);
+        return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
 
     // get specific article information
@@ -38,7 +38,7 @@ class model {
             echo "error-code: 2";
         }
 
-        return $sm->fetchAll(PDO::FETCH_CLASS)[0];
+        return $sm->fetchAll(\PDO::FETCH_CLASS)[0];
     }
 
     // get a list of articles with a certain offset
@@ -55,7 +55,7 @@ class model {
             die();
         }
 
-        return $sm->fetchAll(PDO::FETCH_CLASS);
+        return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
 
     // get amount of articles in articles table
@@ -75,7 +75,8 @@ class model {
         return (int)$sm->fetch()[0];
     }
 
-    // search for article where title is equal to query
+    // ------------ search specific article ------------
+
     function searchArticle($query) {
 
         $db = dbConnect();
@@ -89,8 +90,10 @@ class model {
             echo "error-code: 5";
         }
 
-        return $sm->fetchAll(PDO::FETCH_CLASS);
+        return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
+
+    // ------------ get all comments from specific post ------------
 
     function getArticleComments($post_id) {
 
@@ -106,8 +109,10 @@ class model {
             die();
         }
 
-        return $sm->fetchAll(PDO::FETCH_CLASS);
+        return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
+
+    // ------------ post comment ------------
 
     function postComment($user_info, $article_id, $comment) {
 
@@ -160,7 +165,8 @@ class model {
         return $sm->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    // get all information from user
+    // ------------ get user information ------------
+
     function getUserInformation($user_id) {
 
         $db = dbConnect();
@@ -199,8 +205,6 @@ class model {
 
             $passw_id_db = $sm->fetchColumn();
 
-            if (!$passw_id_db) return "error";
-
             if (password_verify($passw, $passw_id_db)) {
 
                 $sql = "SELECT user_id FROM `linfo_users` WHERE user_email = '$email'";
@@ -215,7 +219,7 @@ class model {
 
                 return $sm->fetchColumn();
             } else {
-                return "login failed";
+                return false;
             }
         }
     }
@@ -223,8 +227,11 @@ class model {
     // ------------ register user ------------
 
     function registerUser($user_id, $email, $passw, $usern) {
+
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
         $usern = filter_var($usern, FILTER_SANITIZE_STRING);
+
         $passw = password_hash($passw, PASSWORD_ARGON2I);
 
         $sql = "INSERT INTO linfo_users (`user_id`, `user_email`, `user_passw`, `user_name`) VALUES (?, ?, ?, ?)";
@@ -247,10 +254,37 @@ class model {
         return;
     }
 
+    // ------------ check logged in password ------------
+
+    function checkPassword($user_id, $passw) {
+
+        $db = dbConnect();
+
+        $sql = "SELECT user_passw FROM `linfo_users` WHERE `user_id` = '$user_id'";
+
+        $sm = $db->prepare($sql);
+
+        if (!$sm->execute()) {
+            echo "something not ok <br>";
+            echo "error-code: 61";
+            die();
+        }
+
+        $passw_id_db = $sm->fetchColumn();
+
+        if (password_verify($passw, $passw_id_db)) {
+
+            return true;
+        } else {
+
+            return false;
+        }
+    }
 
     // ------------ update user settings ------------
 
     function updateAvatar($user_id, $img) {
+
         $target_dir = "img/";
         $target_file = $target_dir . basename($img["avatar_img"]["name"]);
         if (move_uploaded_file($_FILES["avatar_img"]["tmp_name"], $target_file)) {
@@ -314,13 +348,51 @@ class model {
     }
 
 
+    function exist($type, $query) {
+
+        $query = filter_var($query, FILTER_SANITIZE_STRING);
+
+        switch ($type) {
+            case "usern":
+                $sql = "SELECT `user_name` FROM linfo_users WHERE lower(`user_name`) = lower(:query)";
+                break;
+            case "email":
+                $sql = "SELECT `user_email` FROM linfo_users WHERE lower(`user_email`) = lower(:query)";
+                break;
+            default:
+                echo "type not found";
+                die();
+        }
+
+        $db = dbConnect();
+
+        $sm = $db->prepare($sql);
+
+        if (!$sm->execute(array('query' => $query))) {
+            echo "something not ok <br>";
+            echo "error-code: 83";
+            die();
+        }
+
+        if ($sm->fetchColumn()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function alert($query) {
+        return "<script type='text/javascript'>alert('".$query."'); </script>";
+    }
+
     // generate random uuid for user
     function generateUuid() {
+
         $data = openssl_random_pseudo_bytes(16);
         assert(strlen($data) == 16);
 
-        $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version to 0100
-        $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
+        $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+        $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
 
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
     }
