@@ -1,9 +1,5 @@
 # Controllers
 
-In deze directory komen al je controllers te staan
-Elke controller handelt een bepaald onderdeel van je website af en bevat functions die alle acties afhandelen
+This directory are for all the **controllers**. 
 
-Een article_controller.php bevat bijvoorbeeld de functies:
-
-- **index()** = haalt alle artikelen op via het model en laadt de articles view in om alle artikelen te tonene
-- **show($id)** = haalt het artikel met id = $id op uit de database en geeft dit aan de artikel weergave view 
+The **controllers** pretty much call _class functions_ from the model & the engine to controll what is shown on the page.
