@@ -7,17 +7,28 @@ class ArticleController {
 
         $model = new model;
 
+        $router = new router;
+
+        $uri = $router->getUrl();
+
         $user_info = $model->getUserInformation($_SESSION['userid']);
 
-        if (isset($_POST['comment'])) {
+        if (isset($_POST['save'])) {
+            $result = $model->saveArticle($article, $_SESSION['userid']);
+            
+            if ($result) {
+                echo $model->alert("article saved");
+
+            } else {
+
+                echo $model->alert("article is already saved");
+            }
+
+        } elseif (isset($_POST['comment'])) {
 
             if (!empty($_POST['comment'])) {
 
                 $model->postComment($user_info, $article, $_POST['comment']);
-
-                $router = new router;
-
-                $uri = $router->getUrl();
 
                 header("location: $uri");
             }

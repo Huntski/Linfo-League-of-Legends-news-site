@@ -254,6 +254,67 @@ class model {
         return;
     }
 
+    // ------------ save article for user ------------
+
+    function saveArticle($article_id, $user_id) {
+
+        $db = dbConnect();
+
+        // check if already in article
+
+        $sql = "SELECT `post_id`, `user_id` FROM linfo_saves WHERE `post_id` = ? AND `user_id` = ?";
+
+        $sm = $db->prepare($sql);
+
+        $data = array($article_id, $user_id);
+
+        if (!$sm->execute($data)) {
+            echo "something not ok <br>";
+            echo "error-code: 73";
+            die();
+        }
+
+        if (count($sm->fetchAll())) {
+            return false;
+        }
+
+        // if not in db save article
+
+        $sql = "INSERT INTO linfo_saves (`post_id`, `user_id`) VALUES (?, ?)";
+
+        $sm = $db->prepare($sql);
+
+        $data = array($article_id, $user_id);
+
+        if (!$sm->execute($data)) {
+            echo "something not ok <br>";
+            echo "error-code: 78";
+            die();
+        }
+
+        return true;
+    }
+
+    function removeSavedArticle($article_id, $user_id) {
+
+        $db = dbConnect();
+
+        $sql = "DELETE FROM linfo_saves WHERE `user_id` = ? AND `post_id` = ?";
+
+        $sm = $db->prepare($sql);
+        $data = array();
+
+        if ($sm->execute($data)) {
+            echo "something not ok <br>";
+            echo "error-code: 22";
+            die();
+        }
+
+        return;
+
+    }
+
+
     // ------------ check logged in password ------------
 
     function checkPassword($user_id, $passw) {

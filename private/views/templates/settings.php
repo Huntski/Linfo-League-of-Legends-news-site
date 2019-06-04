@@ -2,7 +2,7 @@
 // var_dump($user_info);
 ?>
 <main>
-    <form action="./settings" method="post" enctype="multipart/form-data">
+    <form action="./settings" method="post" enctype="multipart/form-data" class="form-default">
         <div class='avatar'>
             <img src='img/<?= $user_info->user_avatar ?>'></img>
         </div>
