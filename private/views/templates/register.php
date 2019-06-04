@@ -4,7 +4,7 @@
 ?>
 
 <main>
-    <form method="post" action="./register">
+    <form method="post" action="./register" class="form-default">
         <div class="logo">
             <a href="./"><img src="img/linfo-logo.png" alt="linfo"></a>
         </div>

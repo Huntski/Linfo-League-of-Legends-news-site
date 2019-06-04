@@ -15,7 +15,7 @@ class ArticleController {
 
         if (isset($_POST['save'])) {
             $result = $model->saveArticle($article, $_SESSION['userid']);
-            
+
             if ($result) {
                 echo $model->alert("article saved");
 

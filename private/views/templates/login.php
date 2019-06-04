@@ -1,5 +1,5 @@
 <main>
-    <form method="post" action="./login">
+    <form method="post" action="./login" class="form-default">
         <div class="logo">
             <a href="./"><img src="img/linfo-logo.png" alt="linfo"></a>
         </div>
