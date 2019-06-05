@@ -199,6 +199,7 @@ a {
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+	transition: opacity .5s;
 }
 
 .img-background img {
@@ -294,6 +295,7 @@ header .logo img {
 	border-radius: 50%;
 	overflow: hidden;
 	background: #fff;
+	z-index: 1;
 }
 
 .avatar img {
@@ -577,8 +579,7 @@ article img {
 }
 
 .comment {
-	width: 630px;
-	margin: 0 auto;
+	text-align: center;
 }
 
 .comment div:nth-child(1), .comment p {
@@ -586,11 +587,16 @@ article img {
 	vertical-align: middle;
 }
 
-.comment div:nth-child(1) {
-	width: 150px;
+.comment .user {
+	/* width: 70px; */
 	text-align: center;
 	color: #c2dbff;
 	font-weight: 700;
+}
+
+.comment .avatar {
+	width: 40px;
+	height: 40px;
 }
 
 .comment p {
@@ -598,6 +604,7 @@ article img {
 	width: 400px;
 	font-size: 1.0em;
 	padding: 15px 25px;
+	text-align: left !important;
 }
 
 /* -- footer -- */
@@ -739,8 +746,10 @@ footer p:nth-child(2) {
 	}
 
 	header .avatar {
+		width: 40px;
+		height: 40px;
 		right: 0;
-		margin: 12px 30px;
+		margin: 9px 30px;
 	}
 
 	.mobile {
