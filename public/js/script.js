@@ -27,3 +27,13 @@ menu_icon.addEventListener('click', () => {
     }
     main.removeEventListener('click', hideMenu);
 });
+
+try {
+    let active_bg = document.querySelector('.article-active > .img-background');
+    let read_more = document.querySelector('.article-active > div > a > button'); // :P
+
+    // read_more.addEventListener()
+    console.log(active_bg);
+} catch (e) {
+    console.error("element not found: article_bg");
+}

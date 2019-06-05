@@ -97,7 +97,7 @@ html {
 
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background: #17456D;
+	background: #12385a;
 	color: #fff;
 }
 
@@ -148,8 +148,8 @@ a {
 	padding: 15px 25px;
 	transition: all .9s;
 }
-.btn-open:hover {
-	color: #FFC45F;
+.btn-open:hover ~ div.img-background img {
+	display: none;
 }
 
 .inp-open {
@@ -206,6 +206,43 @@ a {
 	height: auto;
 }
 
+.bg-full {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity: .35;
+	overflow: hidden;
+}
+
+.bg-full img {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 130%;
+}
+
+.active-msg {
+	margin-top: 150px;
+	font-weight: 700;
+	max-width: 500px;
+}
+
+.active-msg h1 {
+	font-family: "Beaufort";
+	font-size: 3.5vw;
+	color: #FFC45F;
+	margin-bottom: 10px;
+}
+
+.active-msg  h2 {
+	font-size: 1.6vw;
+	color: #e2e2e2;
+	line-height: 1.5;
+}
+
 /* ------------ layout css ------------ */
 
 /* -- header -- */
@@ -217,7 +254,7 @@ header {
 nav a {
 	position: relative;
 	text-transform: uppercase;
-	padding: 15px 10px;
+	padding: 10px;
 	margin: 0 2vw;
 	transition: transform .3s;
 	font-size: 0.8em;
@@ -229,7 +266,7 @@ nav a::after {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 3px;
+	height: 2px;
 	background: #fff;
 	transform: scale(0, 1);
 	transition: transform .2s ease;
@@ -249,23 +286,22 @@ header img {
 }
 
 header .logo img {
-	max-width: 60px;
+	max-width: 40px;
 }
 
 .avatar {
 	position: relative;
 	border-radius: 50%;
 	overflow: hidden;
-	width: 60px !important;
-	height: 60px !important;
 	background: #fff;
 }
 
 .avatar img {
 	position: absolute;
-	top: 0;
+	/* margin-left: auto;
+	margin-right: auto;
 	left: 0;
-	height: 110% !important;
+	right: 0; */
 }
 
 .menu-icon, .logo {
@@ -425,7 +461,7 @@ article img {
 /* view article page */
 
 .view-article {
-	background: #1B5C94;
+	background: rgb(22, 78, 126);
 	max-width: 800px;
 	padding: 20px;
 	margin: 30px auto;
@@ -480,11 +516,11 @@ article img {
 /* form */
 
 .form-default {
-	max-width: 400px;
-	min-height: 560px;
+	width: 400px;
+	min-height: 550px;
 	text-align: center;
 	line-height: 1.7;
-	margin: 70px auto;
+	margin: 40px 0;
 	background: #1B5C94;
 	padding: 40px 0;
 }
@@ -506,7 +542,7 @@ article img {
 	max-width: 60px;
 }
 
-.form-default h2, p, a {
+.form-default h2, .form-default p, .form-default a {
 	color: #4FADFF;
 }
 
@@ -567,8 +603,11 @@ article img {
 /* -- footer -- */
 
 footer {
+	bottom: 0;
+	left: 0;
 	width: 100%;
 	color: #4FADFF;
+	background: #12385a;
 }
 
 footer p {
@@ -663,7 +702,7 @@ footer p:nth-child(2) {
 	/* --- global css --- */
 
 	.btn-active:active {
-		margin-top: 4px !important;
+		margin-top: 14px !important;
 		border-bottom-width: 2px;
 	}
 
@@ -673,7 +712,6 @@ footer p:nth-child(2) {
 		background: #17456D;
 		border-bottom: solid 1px #000;
 		z-index: 1;
-		padding: 5px 0;
 	}
 
 	header * {
@@ -683,10 +721,6 @@ footer p:nth-child(2) {
 		padding: 3px 0;
 	}
 
-	.btn-active:active {
-		margin-top: 23px !important;
-	}
-
 	header .logo, header .login, header .avatar {
 		position: absolute;
 		top: 0;
@@ -694,12 +728,14 @@ footer p:nth-child(2) {
 
 	header .logo {
 		left: 0;
-		margin: 1px 30px;
+		margin: -1px 30px;
 	}
 
 	header .login {
 		right: 0;
-		margin: 19px 30px;
+		font-size: 0.7em;
+		padding: 8px 14px;
+		margin: 9px 30px;
 	}
 
 	header .avatar {
@@ -716,6 +752,14 @@ footer p:nth-child(2) {
 	}
 
 	/* main */
+
+	.center {
+		width: 90%;
+		margin: 0 auto;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 
 	.article-active {
 		height: 70vh;
@@ -744,6 +788,10 @@ footer p:nth-child(2) {
 
 	.article-active img {
 		margin-top: -10%;
+	}
+
+	.active-msg {
+		margin-left: 70px;
 	}
 
 	/* footer */

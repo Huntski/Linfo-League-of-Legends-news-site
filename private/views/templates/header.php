@@ -29,10 +29,6 @@ if (isset($_SESSION['userid'])) $user_info = $model->getUserInformation($_SESSIO
                 <img src="img/menu-icon.png" alt="">
             </div>
 
-            <div class="logo">
-                <a href="./"><img src="img/linfo-logo.png" alt="linfo"></a>
-            </div>
-
             <div class="header-dropdown">
                 <div>
                     <a href="./"><img src="img/linfo-logo.png" alt="linfo"></a>

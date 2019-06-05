@@ -1,7 +1,7 @@
 <?php
 
 class HomeController {
-    function loadPage($option = null) {
+    function loadPage() {
         try {
 
             require "../private/models/model.php";
@@ -14,7 +14,7 @@ class HomeController {
 
             $allArticles = $model->getArticles(0, 4);
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo "error found: $e";
             die();
         }

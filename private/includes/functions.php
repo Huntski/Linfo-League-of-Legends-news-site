@@ -4,9 +4,10 @@ function dbConnect() {
 
     try {
         $config = require __DIR__ . "/config.php";
-        $dsn = 'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'];
+        $host = $config['db_host'];
+        $dbname = $config['db_name'];
 
-        $connection = new PDO($dsn, $config['db_usern'], $config['db_passw']);
+        $connection = new PDO("mysql:host=$host;dbname=$dbname", $config['db_usern'], $config['db_passw']);
 
         return $connection;
 
@@ -14,5 +15,4 @@ function dbConnect() {
         echo 'something not ok: ' . $e->getMessage();
         die();
     }
-
 }

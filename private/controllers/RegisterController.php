@@ -9,13 +9,11 @@ class RegisterController {
 
         $empty = array();
 
-        if (isset($_POST['email']) && isset($_POST['passw']) && isset($_POST['r-passw']) && isset($_POST['usern'])) {
+        if (isset($_POST['email']) && isset($_POST['passw']) && isset($_POST['usern'])) {
 
             if (empty($_POST['email'])) array_push($empty, "email");
 
             if (empty($_POST['passw'])) array_push($empty, "passw");
-
-            if (empty($_POST['r-passw'])) array_push($empty, "r-passw");
 
             if (empty($_POST['usern'])) array_push($empty, "usern");
 

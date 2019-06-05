@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+// error_reporting(0);
 
 session_start();
 
@@ -40,3 +40,5 @@ if ($controller) {
     echo "<h3 style='text-align: center;'>404 no page found</h3>";
     die();
 }
+
+// echo "plz work";

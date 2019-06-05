@@ -19,7 +19,7 @@
             <button type="submit" name="save"><img src='img/icon_save.png'> save</button>
         </form>
 
-        <form method="post" action="./article-<?= $article_info->a_id ?>" class="form-comment form-default">
+        <form method="post" action="./article-<?= $article_info->a_id ?>" class="form-comment">
             <div class="avatar">
                 <img src="img/<?= $user_info->user_avatar ?>" alt=" ">
             </div>
