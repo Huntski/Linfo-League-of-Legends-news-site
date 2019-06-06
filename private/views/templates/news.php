@@ -5,8 +5,10 @@
 ?>
 
 <main>
-    <input type="input" name="search" class="inp-open search-article" placeholder="Search..">
-    <h3 class="article-list-filter">Most recent articles<h3>
+    <div class="list-menu">
+        <p>Most recent articles</p>
+        <input type="search" name="search" class="inp-search search-article" autocomplete="off" placeholder="Search title..">
+    </div>
     <div class="article-list">
         <?php
         if(!empty($article_list)) {

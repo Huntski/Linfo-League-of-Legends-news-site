@@ -6,7 +6,15 @@ $routes = $router->getRoutes();
 
 $model = new model;
 
-if (isset($_SESSION['userid'])) $user_info = $model->getUserInformation($_SESSION['userid']);
+if (isset($_SESSION['userid'])) {
+    $user_info = $model->getUserInformation($_SESSION['userid']);
+
+    if (!$user_info) {
+        session_destroy();
+
+        header("Refresh: 1");
+    }
+}
 
 ?>
 
@@ -39,7 +47,7 @@ if (isset($_SESSION['userid'])) $user_info = $model->getUserInformation($_SESSIO
                         echo "
                         <a href='./settings'>
                         <div class='avatar'>
-                            <img src='img/".$user_info->user_avatar."'></img>
+                            <img src='img/avatar/".$user_info->user_avatar."'></img>
                         </div>
                         </a>";
                     } else {
@@ -76,7 +84,7 @@ if (isset($_SESSION['userid'])) $user_info = $model->getUserInformation($_SESSIO
                 echo "
                 <a href='./settings'>
                 <div class='avatar'>
-                    <img src='img/".$user_info->user_avatar."'></img>
+                    <img src='img/avatar/".$user_info->user_avatar."'></img>
                 </div>
                 </a>";
             } else {

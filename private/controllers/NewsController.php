@@ -3,8 +3,6 @@
 class NewsController {
     function loadPage($page = 1) {
 
-        require "../private/models/model.php";
-
         $model = new model;
 
         define("LIST_LIMIT", 6);
@@ -20,8 +18,6 @@ class NewsController {
         $articleCount = $model->getArticleCount();
 
         if (isset($articleCount)) {
-
-            require "../private/views/engine.php";
 
             $template_engine = new template_engine;
 

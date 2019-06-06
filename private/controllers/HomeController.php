@@ -4,8 +4,6 @@ class HomeController {
     function loadPage() {
         try {
 
-            require "../private/models/model.php";
-
             $model = new model;
 
             if (isset($_SESSION['userid'])) {
@@ -20,7 +18,6 @@ class HomeController {
         }
 
         if ($allArticles) {
-            require "../private/views/engine.php";
 
             $template_engine = new template_engine;
 

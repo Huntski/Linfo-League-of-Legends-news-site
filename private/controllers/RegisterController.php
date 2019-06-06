@@ -3,8 +3,6 @@
 class RegisterController {
     function loadPage() {
 
-        require "../private/models/model.php";
-
         $model = new model;
 
         $empty = array();
@@ -31,8 +29,6 @@ class RegisterController {
                 }
             }
         }
-
-        require "../private/views/engine.php";
 
         $template_engine = new template_engine;
 

@@ -127,6 +127,10 @@ a {
 	text-decoration: none;
 }
 
+input::placeholder::first-letter {
+	text-transform: uppercase;
+}
+
 .btn-active {
 	color: #17456D;
 	background: #FFC45F;
@@ -148,9 +152,6 @@ a {
 	padding: 15px 25px;
 	transition: all .9s;
 }
-.btn-open:hover ~ div.img-background img {
-	display: none;
-}
 
 .inp-open {
 	display: block;
@@ -164,11 +165,17 @@ a {
 }
 .inp-open::placeholder {
 	color: #ffffffaa;
+	transition: color .4s;
 }
 
 .inp-open:hover::placeholder {
 	color: #fff;
 }
+
+.inp-search::placeholder {
+	color: #2677BE;
+}
+
 
 .textarea-open {
 	display: block;
@@ -192,7 +199,7 @@ a {
 	width: 100%;
 	height: 100%;
 	z-index: -1 !important;
-	opacity: .6;
+	opacity: .5;
 
 	display: flex;
 	flex-wrap: wrap;
@@ -244,6 +251,23 @@ a {
 	line-height: 1.5;
 }
 
+.avatar {
+	width: 60px;
+	height: 60px;
+}
+
+.avatar img {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	margin: auto;
+	height: 110% !important;
+	width: auto !important;
+	padding: 0 !important;
+}
+
 /* ------------ layout css ------------ */
 
 /* -- header -- */
@@ -255,7 +279,7 @@ header {
 nav a {
 	position: relative;
 	text-transform: uppercase;
-	padding: 10px;
+	padding: 10px 15px;
 	margin: 0 2vw;
 	transition: transform .3s;
 	font-size: 0.8em;
@@ -263,23 +287,24 @@ nav a {
 
 nav a::after {
 	content: "";
-  	position: absolute;
+	position: absolute;
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 2px;
-	background: #fff;
-	transform: scale(0, 1);
-	transition: transform .2s ease;
+	height: 0px;
+	background: #F7A71F;
+	/* transform: scale(1, 0); */
+	transition: height .4s;
 	color: #000;
 }
 
 nav a:hover::after {
-  	transform: scale(1);
+	height: 4px;
 }
 
 nav a.onpage::after {
-	transform: scale(1) !important;
+	height: 4px;
+	background: #2677BE;
 }
 
 header img {
@@ -290,20 +315,17 @@ header .logo img {
 	max-width: 40px;
 }
 
+header .avatar img {
+	top: -3px;
+	height: 117% !important;
+}
+
 .avatar {
 	position: relative;
 	border-radius: 50%;
 	overflow: hidden;
 	background: #fff;
 	z-index: 1;
-}
-
-.avatar img {
-	position: absolute;
-	/* margin-left: auto;
-	margin-right: auto;
-	left: 0;
-	right: 0; */
 }
 
 .menu-icon, .logo {
@@ -380,15 +402,34 @@ main {
 	margin-top: 40px;
 }
 
-/* list article */
+/* list menu */
 
-.article-list-filter {
-	border-bottom: solid 1px #4FADFF;
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 20px 130px;
-	font-size: 1.5em;
+.list-menu * {
+	display: inline-block;
+	margin: 0;
+	font-size: 1.0em;
 }
+
+.list-menu {
+	border-bottom: solid 1px #2677BE;
+	max-width: 900px;
+	margin: 100px auto 0 auto;
+	color: #2677BE;
+	overflow: hidden;
+}
+
+.inp-search {
+	position: relative;
+	bottom: 0;
+	color: #3086d1;
+	margin-left: 50px;
+}
+
+.inp-search:focus {
+	border-bottom: solid 1px #4FADFF;
+}
+
+/* list article */
 
 .article-list {
 	display: flex;
@@ -410,7 +451,7 @@ article {
 }
 
 article:hover img {
-	transform: scale(1.1);
+	transform: scale(1.07);
 }
 
 article div:nth-child(1) {
@@ -487,7 +528,7 @@ article img {
 .view-article .article-img {
 	float: right;
 	max-width: 400px;
-	margin: 60px;
+	margin: 30px;
 }
 
 .view-article div img {
@@ -531,6 +572,7 @@ article img {
 	margin: 30px auto;
 	/* font-size: 1.2em; */
 }
+
 .form-default .btn-active:active {
 	margin-top: 34px !important;
 	border-bottom-width: 1px;
@@ -546,6 +588,12 @@ article img {
 
 .form-default h2, .form-default p, .form-default a {
 	color: #4FADFF;
+}
+
+.form-default h2 {
+	text-transform: capitalize;
+	margin-top: 10px;
+	margin-bottom: -20px;
 }
 
 .form-default .error {
@@ -576,6 +624,10 @@ article img {
 .form-comment .avatar {
 	width: 85px !important;
 	height: 85px !important;
+}
+
+.form-comment .btn-active:active {
+	margin-top: 4px !important;
 }
 
 .comment {
@@ -697,6 +749,7 @@ footer p:nth-child(2) {
 		margin-top: 30px;
 		padding: 0;
 		padding: 35px 0;
+		color: #2677BE;
 	}
 
 	/* footer */
@@ -762,8 +815,8 @@ footer p:nth-child(2) {
 
 	/* main */
 
-	.center {
-		width: 90%;
+	.flex {
+		/* width: 90%; */
 		margin: 0 auto;
 		display: flex;
 		flex-wrap: wrap;
@@ -800,7 +853,7 @@ footer p:nth-child(2) {
 	}
 
 	.active-msg {
-		margin-left: 70px;
+		margin-left: 55px;
 	}
 
 	/* footer */

@@ -21,7 +21,7 @@
 
         <form method="post" action="./article-<?= $article_info->a_id ?>" class="form-comment">
             <div class="avatar">
-                <img src="img/<?= $user_info->user_avatar ?>" alt=" ">
+                <img src="img/avatar/<?= $user_info->user_avatar ?>" alt=" ">
             </div>
             <textarea class='textarea-open' name="comment" cols="50" rows="3" maxlength="250" placeholder="comment. ."></textarea>
             <input type="submit" class="btn-active" value="comment">
@@ -41,7 +41,7 @@
                 <div class='comment'>
                     <div class='user'>
                         <div class='avatar'>
-                            <img src='img/".$comment_user->user_avatar."' alt=' '>
+                            <img src='img/avatar/".$comment_user->user_avatar."' alt=' '>
                         </div>
                         <h3>".$comment_user->user_name."</h3>
                     </div>

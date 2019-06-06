@@ -3,7 +3,7 @@
 // var_dump($empty);
 ?>
 
-<main class="center">
+<main class="flex">
     <form method="post" action="./register" class="form-default">
         <input type="text" name="usern" autocomplete="off" class="inp-open <?php if (in_array("usern", $empty)) echo "error"; ?>" placeholder="Username">
         <input type="email" name="email" class="inp-open <?php if (in_array("email", $empty)) echo "error"; ?>" placeholder="Email..">

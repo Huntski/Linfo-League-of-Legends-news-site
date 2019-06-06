@@ -2,6 +2,17 @@
 
 require "../private/includes/functions.php";
 
+/*
+    The prepare and execute and return should be in a function on my next project
+    so my code is less repeated.
+
+    Because the only thing that changes each function is pretty much just the sql
+
+    Also I need to redifine how I show errors
+
+    Any criticism om my code is 100% welcome
+*/
+
 class model {
 
     // -- articles --
@@ -36,6 +47,27 @@ class model {
         if (!$sm->execute()) {
             echo "something not ok <br>";
             echo "error-code: 2";
+        }
+
+        return $sm->fetchAll(\PDO::FETCH_CLASS)[0];
+    }
+
+    function getArticlesThroughSaves(...$data) {
+
+        $db = dbConnect();
+
+        $sql = "SELECT * FROM linfo_articles WHERE";
+
+        foreach ($data[0] as $post_id) {
+            $sql .= " a_id = $post_id";
+        }
+
+        $sm = $db->prepare($sql);
+
+        if (!$sm->execute()) {
+            echo "something not ok <br>";
+            echo "error-code: 93";
+            die();
         }
 
         return $sm->fetchAll(\PDO::FETCH_CLASS)[0];
@@ -131,8 +163,6 @@ class model {
             echo "error-code: 7";
             die();
         }
-
-        return;
     }
 
     // -- events --
@@ -167,11 +197,32 @@ class model {
 
     // ------------ get user information ------------
 
-    function getUserInformation($user_id) {
+    function getUserInformation($query, $type = null) {
+
+        if ($type == null || $type == 'id') {
+            $sql = "SELECT `user_name`, `user_avatar`, `user_id` FROM `linfo_users` WHERE `user_id` = '$query'";
+        } elseif ($type == 'name') {
+            $sql = "SELECT `user_name`, `user_avatar`, `user_id` FROM `linfo_users` WHERE lower(`user_name`) = lower('$query')";
+        }
 
         $db = dbConnect();
 
-        $sql = "SELECT `user_name`, `user_avatar`, `user_id` FROM `linfo_users` WHERE `user_id` = '$user_id'";
+        $sm = $db->prepare($sql);
+
+        if (!$sm->execute()) {
+            echo "something not ok <br>";
+            echo "error-code: 10";
+            die();
+        }
+
+        return $sm->fetchAll(\PDO::FETCH_CLASS)[0];
+    }
+
+    function getUserSaves($user_id) {
+
+        $db = dbConnect();
+
+        $sql = "SELECT `post_id` FROM linfo_saves WHERE `user_id` = '$user_id'";
 
         $sm = $db->prepare($sql);
 
@@ -250,8 +301,6 @@ class model {
         $_SESSION['userid'] = $user_id;
 
         header("location: ./");
-
-        return;
     }
 
     // ------------ save article for user ------------
@@ -309,9 +358,6 @@ class model {
             echo "error-code: 22";
             die();
         }
-
-        return;
-
     }
 
 
@@ -345,28 +391,27 @@ class model {
     // ------------ update user settings ------------
 
     function updateAvatar($user_id, $img) {
-
-        $target_dir = "img/";
+        $target_dir = "img/avatar/";
         $target_file = $target_dir . basename($img["avatar_img"]["name"]);
-        if (move_uploaded_file($_FILES["avatar_img"]["tmp_name"], $target_file)) {
 
-            $sql = "UPDATE linfo_users SET user_avatar = ? WHERE user_id = ?";
-
-            $db = dbConnect();
-
-            $sm = $db->prepare($sql);
-
-            $data = array(basename($img["avatar_img"]["name"]), $user_id);
-
-            if (!$sm->execute($data)) {
-                echo "something not ok <br>";
-                echo "error-code: 14";
-                die();
+        if (!file_exists($target_file)) {
+            if (!move_uploaded_file($_FILES["avatar_img"]["tmp_name"], $target_file)) {
+                return false;
             }
+        }
 
-            return "file uploaded";
-        } else {
-            return "Sorry, there was an error uploading your file.";
+        $sql = "UPDATE linfo_users SET user_avatar = ? WHERE user_id = ?";
+
+        $db = dbConnect();
+
+        $sm = $db->prepare($sql);
+
+        $data = array(basename($img["avatar_img"]["name"]), $user_id);
+
+        if (!$sm->execute($data)) {
+            echo "something not ok <br>";
+            echo "error-code: 14";
+            die();
         }
     }
 
@@ -385,8 +430,6 @@ class model {
             echo "error-code: 15";
             die();
         }
-
-        return;
     }
 
     function updatePassword($user_id, $passw) {
@@ -404,8 +447,6 @@ class model {
             echo "error-code: 16";
             die();
         }
-
-        return;
     }
 
 

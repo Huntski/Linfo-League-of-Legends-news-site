@@ -3,8 +3,6 @@
 class ArticleController {
     function loadPage($article = 0) {
 
-        require "../private/models/model.php";
-
         $model = new model;
 
         $router = new router;
@@ -43,8 +41,6 @@ class ArticleController {
         // echo "</pre>";
 
         if (isset($article_info) && isset($article_comments)) {
-
-            require "../private/views/engine.php";
 
             $template_engine = new template_engine;
 

@@ -9,8 +9,6 @@ class LoginController {
             header("location: ./");
         }
 
-        require "../private/models/model.php";
-
         $error = false;
 
         if (isset($_POST['email']) && isset($_POST['passw'])) {
@@ -33,8 +31,6 @@ class LoginController {
                 }
             }
         }
-
-        require "../private/views/engine.php";
 
         $template_engine = new template_engine;
 

@@ -3,6 +3,8 @@
 class template_engine {
     function render(...$data) {
 
+        // the way I transfer data to templates needs to change
+
         if (!count($data)) die();
 
         include "templates/header.php";
@@ -31,9 +33,17 @@ class template_engine {
                 $empty = $data[1];
                 include "templates/register.php";
                 break;
+
             case "settings":
                 include "templates/settings.php";
                 break;
+
+            case "account":
+                $user_info = $data[1];
+                $article_list = $data[2];
+                include "templates/account.php";
+                break;
+
             default:
                 $allArticles = $data[1];
                 include "templates/home.php";

@@ -1,4 +1,4 @@
-<main class="center">
+<main class="flex">
     <form method="post" action="./login" class="form-default">
         <input name="email" type="email" class="inp-open" placeholder="Email..">
         <input type="password" name="passw" autocomplete="on" class="inp-open" placeholder="Password..">

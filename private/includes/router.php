@@ -76,6 +76,13 @@ class router {
                 $controller = "ArticleController";
                 break;
 
+            case strpos($routes[0], "user"):
+                if (!isset($_SESSION['userid'])) {
+                    header("location: ./register");
+                }
+                $controller = "AccountController";
+                break;
+
             case "cms":
                 $controller = "AdminController";
                 break;
@@ -100,10 +107,9 @@ class router {
         return $url;
     }
 
-    function checkPage($routes) {
+    function checkExtension($routes) {
         if (!strpos( $routes[0], "-")) return false;
 
         return (int)explode("-", $routes[0])[1];
     }
-
 }

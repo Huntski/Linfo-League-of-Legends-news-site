@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+// error_reporting(0);
 
 session_start();
 
@@ -17,7 +17,7 @@ if ($routes[0] == 'logout') {
 
 $controller = $router->getController($routes);
 
-$page = $router->checkPage($routes);
+$extension = $router->checkExtension($routes);
 
 // echo $controller;
 
@@ -28,10 +28,14 @@ if ($controller) {
 
         $controller = new $controller;
 
-        if ($page) {
-            $controller->loadPage($page);
+        require "../private/models/model.php";
+        require "../private/views/engine.php";
+
+        if ($extension) {
+            $controller->loadPage($extension);
+        } else {
+            $controller->loadPage();
         }
-        $controller->loadPage();
     } catch (Exception $e) {
         echo $e;
         echo "<br> $controller";
