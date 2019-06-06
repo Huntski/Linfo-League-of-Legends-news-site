@@ -10,7 +10,7 @@ class HomeController {
                 $user_info = $model->getUserInformation($_SESSION['userid']);
             }
 
-            $allArticles = $model->getArticles(0, 4);
+            $allArticles = $model->getArticles(0, 7);
 
         } catch (\Exception $e) {
             echo "error found: $e";

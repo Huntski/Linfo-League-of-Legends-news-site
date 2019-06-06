@@ -45,7 +45,8 @@ if (isset($_SESSION['userid'])) {
                 <?php
                     if (isset($user_info)) {
                         echo "
-                        <a href='./settings'>
+                        <a href='./settings'><img class='settings' src='img/settingsIcon.png'></a>
+                        <a href='./user'>
                         <div class='avatar'>
                             <img src='img/avatar/".$user_info->user_avatar."'></img>
                         </div>
@@ -82,7 +83,7 @@ if (isset($_SESSION['userid'])) {
             <?php
             if (isset($user_info)) {
                 echo "
-                <a href='./settings'>
+                <a href='./user'>
                 <div class='avatar'>
                     <img src='img/avatar/".$user_info->user_avatar."'></img>
                 </div>

@@ -15,9 +15,8 @@ require "../private/includes/functions.php";
 
 class model {
 
-    // -- articles --
+    // ------------ get all articles in article table ------------
 
-    // get all articles in article table
     function getAllArticles() {
 
         $db = dbConnect();
@@ -32,7 +31,8 @@ class model {
         return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
 
-    // get specific article information
+    // ------------ get specific article information ------------
+    
     function getArticle($id = null) {
 
         if (!$id) {
@@ -56,10 +56,17 @@ class model {
 
         $db = dbConnect();
 
-        $sql = "SELECT * FROM linfo_articles WHERE";
+        $sql = "";
+
+        $range = count($data);
+
+        $last_post = $data[0][$range];
 
         foreach ($data[0] as $post_id) {
-            $sql .= " a_id = $post_id";
+            $sql .= "(SELECT * FROM linfo_articles WHERE a_id = $post_id->post_id)";
+            if ($post_id->post_id != $last_post->post_id) {
+                $sql .= " union ";
+            }
         }
 
         $sm = $db->prepare($sql);
@@ -70,10 +77,11 @@ class model {
             die();
         }
 
-        return $sm->fetchAll(\PDO::FETCH_CLASS)[0];
+        return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
 
-    // get a list of articles with a certain offset
+    // ------------ get a list of articles with a certain offset ------------
+
     function getArticles($offset = 0, $limit = 6) {
 
         $db = dbConnect();
@@ -90,7 +98,8 @@ class model {
         return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
 
-    // get amount of articles in articles table
+    // ------------ get amount of articles in articles table ------------
+
     function getArticleCount() {
 
         $db = dbConnect();
@@ -232,7 +241,7 @@ class model {
             die();
         }
 
-        return $sm->fetchAll(\PDO::FETCH_CLASS)[0];
+        return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
 
     // ------------ login user ------------

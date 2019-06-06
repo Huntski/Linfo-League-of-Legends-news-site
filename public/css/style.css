@@ -219,17 +219,24 @@ input::placeholder::first-letter {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 123%;
 	z-index: -1;
 	opacity: .35;
 	overflow: hidden;
 }
 
-.bg-full img {
+.bg-full:not(.height) img {
 	position: relative;
 	top: 0;
 	left: 0;
 	width: 130%;
+}
+
+.bg-full.height img {
+	position: relative;
+	top: 0;
+	left: 0;
+	height: 130%;
 }
 
 .active-msg {
@@ -640,7 +647,6 @@ article img {
 }
 
 .comment .user {
-	/* width: 70px; */
 	text-align: center;
 	color: #c2dbff;
 	font-weight: 700;
@@ -657,6 +663,55 @@ article img {
 	font-size: 1.0em;
 	padding: 15px 25px;
 	text-align: left !important;
+}
+
+/* view user account */
+
+.view-user {
+	background: #17456D;
+	max-width: 1000px;
+	padding: 40px;
+	margin: 40px auto;
+}
+
+.user-info {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.user-info * {
+	display: inline-block;
+	vertical-align: center;
+}
+
+.user-info .settings {
+	width: 30px;
+	margin-left: 10px;
+}
+
+.view-user .avatar {
+	width: 130px;
+	height: 130px;
+	margin: 0 auto;
+}
+
+.user-info h2 {
+	font-family: "Beaufort";
+	margin-top: 13px;
+	font-size: 2.5em;
+	color: #F7A71F;
+}
+
+.view-user {
+	border-color: #4FADFF;
+}
+
+.view-user p, .view-user input::placeholder {
+	color: #4FADFF;
+}
+
+.view-user article {
+	z-index: 1;
 }
 
 /* -- footer -- */

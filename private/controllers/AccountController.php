@@ -12,7 +12,7 @@ class AccountController {
             die();
         }
 
-        $saves = $model->getUserSaves($_SESSION['userid']);
+        $saves = $model->getUserSaves($user_info->user_id);
 
         $article_list = $model->getArticlesThroughSaves($saves);
 
