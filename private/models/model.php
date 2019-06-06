@@ -32,7 +32,7 @@ class model {
     }
 
     // ------------ get specific article information ------------
-    
+
     function getArticle($id = null) {
 
         if (!$id) {
@@ -60,12 +60,13 @@ class model {
 
         $range = count($data);
 
-        $last_post = $data[0][$range];
+        $last_post = $data[0][$range+1];
 
         foreach ($data[0] as $post_id) {
-            $sql .= "(SELECT * FROM linfo_articles WHERE a_id = $post_id->post_id)";
-            if ($post_id->post_id != $last_post->post_id) {
-                $sql .= " union ";
+            if ((int)$post_id->post_id == (int)$last_post->post_id) {
+                $sql .= "(SELECT * FROM linfo_articles WHERE a_id = $post_id->post_id)";
+            } else {
+                $sql .= "(SELECT * FROM linfo_articles WHERE a_id = $post_id->post_id) union ";
             }
         }
 
@@ -180,13 +181,15 @@ class model {
 
         $db = dbConnect();
 
-        $sql = "SELECT * FROM linfo_events";
+        $sql = "SELECT * FROM linfo_events ORDER BY e_date DESC";
+
         $sm = $db->prepare($sql);
+
         if (!$sm->execute()) {
             echo "something not ok <br>";
             echo "error-code: 8";
         }
-        return $sm->fetchAll(\PDO::FETCH_ASSOC);
+        return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
 
 

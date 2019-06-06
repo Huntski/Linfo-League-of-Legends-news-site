@@ -88,9 +88,6 @@ class router {
                 break;
 
             default:
-                if (!isset($_SESSION['userid'])) {
-                    header("location: ./welcome");
-                }
                 $controller = "HomeController";
                 break;
         }

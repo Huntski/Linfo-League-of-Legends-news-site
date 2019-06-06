@@ -44,6 +44,11 @@ class template_engine {
                 include "templates/account.php";
                 break;
 
+            case "events":
+                $event_list = $data[1];
+                include "templates/events.php";
+                break;
+
             default:
                 $allArticles = $data[1];
                 include "templates/home.php";

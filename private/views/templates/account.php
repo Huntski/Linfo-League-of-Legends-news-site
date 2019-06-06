@@ -54,7 +54,4 @@
             ?>
         </div>
     </div>
-    <div class="bg-full height">
-        <img src="img/cheer.jpg" alt="">
-    </div>
 </main>
