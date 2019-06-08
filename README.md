@@ -1,10 +1,12 @@
 ## Linfo
-www.minecraft.net is een website van Minecraft waar gebruikers kunnen Minecraft kopen bedoeld voor Minecraft fans
-De website is enigszins te vergelijken met Minecraft.com of https://minecraft.nl/ maar toch anders omdat Minecraft van Minecraft is.
+http://25718.hosts2.ma-cloud.nl/linfo/public/
 
-### Uniek aan dit concept is: 
- * eerste u.s.p. (vul hier in, waarin jouw site anders is dan alle anderen)
- * tweede u.s.p. (vul hier in, waar jouw site door gaat opvallen, wat zal iedereen onthouden van jouw site?)
+Linfo is a League of Legends news site sharing everyday articles 
+and lets you keep track of upcomming esports tournements.
+
+### Unique about this site: 
+ * eerste u.s.p. ( Its interactive. But its not rly unique )
+ * tweede u.s.p. ( The design is made to make it **look** unique. )
 
 ---
 #### Milestones 
