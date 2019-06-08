@@ -5,15 +5,11 @@ Linfo is a League of Legends news site sharing everyday articles
 and lets you keep track of upcomming esports tournements.
 
 ### Unique about this site: 
- * eerste u.s.p. ( Its interactive. But its not rly unique )
- * tweede u.s.p. ( The design is made to make it **look** unique. )
+ * first u.s.p. ( Its interactive. But its not rly unique )
+ * second u.s.p. ( The design is made to make it **look** unique. )
 
 ---
 #### Milestones 
-
-In het [Kwalificatiedossier] voor de opleiding Mediadeveloper staan een aantal *kerntaken* en *werkprocessen*.
-In onderstaande tabel zie je per kerntaak en werkproces welke werkzaamheden en documenten hier bij horen.
-Elke opgeleverd product of document is een *milestone*, een belangrijke stap die nodig is bij de ontwikkeling van jouw MyBand project.
 
 ![kerntaken en werkprocessen](doc/images/kd_taken_processen.png)
 
@@ -25,16 +21,16 @@ Deze fase duurt 3 weken
 
 | Milestone  | Status | Link | Type Document of cloudservice |
 | ------ |  ------ | ------ | ------ |
-| README                                            | TODO | [README.md]  (dit document)          | MarkDown |
-| B1-K1-W1 Debriefing                               | TODO | [Debriefing]                         | Markdown |
+| README                                            | DONE | [README.md]  (dit document)          | MarkDown |
+| B1-K1-W1 Debriefing                               | DONE | [Debriefing]                         | Markdown |
 | B1-K1-W2 Planning                                 | TODO | [Planning]                           | Markdown |
 | B1-K1-W2 Plan van aanpak                          | TODO | [Plan van Aanpak]                    | Markdown of Word/RTF|
-| B1-K1-W2 User stories                             | TODO | [User Stories]                       | Markdown of Word/RTF|
+| B1-K1-W2 User stories                             | done | [User Stories]                       | Markdown of Word/RTF|
 | B1-K1-W2 Functioneel ontwerp                      | TODO | [FO]                                 | Markdown of Word/RTF|
 | B1-K1-W2 Flowchart                                | TODO | [Flow]                               | Afbeelding(en) of geexporteerd uit http://draw.io |
 | B1-K1-W2 Urenschatting                            | TODO | [Urenschatting]                      | Markdown |
 | B1-K1-W2 Wireframes en/of Interactief prototype   | TODO | [axShare]                            | Axshare link of link naar ander online prototype tool |
-| B1-K1-W2 Sfeer impressie / schermontwerpen        | TODO | [Design]                             | Afbeeldingen |
+| B1-K1-W2 Sfeer impressie / schermontwerpen        | DONE | [Design]                             | Afbeeldingen |
 
 [Kwalificatiedossier]: https://kwalificaties.s-bb.nl/Handlers/DocumentLibrary.ashx?id=276758
 [README.md]: <https://github.com/JouwGithubNaam/myband/blob/master/README.md>
@@ -65,7 +61,7 @@ Deze fase duurt 3 weken
 
 | Milestone  | Status | Link |
 | ------ |  ------ | ------ |
-| B1-K3-W2 Link naar de live omgeving                        |  TODO |  <https://mijnliveomgeving.com> |
+| B1-K3-W2 Link naar de live omgeving                        |  TODO |  <25718.hosts2.ma-cloud.nl/linfo/public/> |
 | B1-K3-W2 Gebruikersdocumentatie / instructie               |  TODO |  [Gebruikers documentatie] |
 | B1-K3-W3 Evaluatie                                         |  TODO |  [Evaluatie] |
 
