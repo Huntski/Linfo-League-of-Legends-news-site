@@ -98,7 +98,7 @@ html {
 
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background: #12385a;
+	background: #0e2a42;
 	color: #fff;
 	height: 100%；
 }
@@ -130,7 +130,7 @@ a {
 }
 
 input::placeholder::first-letter {
-	text-transform: uppercase;
+	text-transform: uppercase !important;
 }
 
 .btn-active {
@@ -201,7 +201,7 @@ input::placeholder::first-letter {
 	width: 100%;
 	height: 100%;
 	z-index: -1 !important;
-	opacity: .5;
+	opacity: .7;
 
 	display: flex;
 	flex-wrap: wrap;
@@ -371,7 +371,138 @@ header .avatar img {
 main {
 	width: 100%;
 	min-height: 60vh;
+	margin: 0 auto;
 }
+
+/* event list */
+
+/*
+	table { border-collapse: separate; }
+	td { border: solid 1px #000; }
+
+*/
+
+.event-list {
+	width: 900px;
+	margin: 0 auto;
+	color: #fff;
+	margin-top: 20px;
+	font-size: 1.3em;
+	overflow: hidden;
+}
+
+.event-list table {
+	text-align: center;
+	width: 100%;
+	border-collapse:separate;
+	border-spacing: 0 1em;
+}
+
+/* there is no other way to do this because y can not target the tr element */
+.event-list td:first-child { border-top-left-radius: 5px; }
+.event-list td:last-child { border-top-right-radius: 5px; }
+.event-list td:first-child { border-bottom-left-radius: 5px; }
+.event-list td:last-child { border-bottom-right-radius: 5px; }
+
+.event-list td * {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.event-list td {
+	max-width: 100px;
+	padding: 9px 0;
+}
+
+.event-list td * {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.event-list td:nth-child(3) { /* vs */
+	color: #fff;
+	font-family: "Beaufort";
+	font-size: .8em;
+	width: 3px;
+}
+
+.event-list td:nth-child(2), .event-list td:nth-child(4) {
+	width: 100px;
+	font-family: "Beaufort";
+}
+
+.event-list td:nth-child(2) p, .event-list td:nth-child(4) p {
+	color: #F7A71F;
+}
+
+.event-list td:nth-child(1), .event-list td:nth-child(6) {
+	margin: 0 60px;
+	/* width: 235px; */
+	font-weight: 500;
+}
+
+/* add bg colors */
+.event-list tr:nth-child(even) {
+	background: #143c60;
+}
+.event-list tr:nth-child(odd) {
+	background: #185184;
+}
+
+.event-list img {
+	height: 40px;
+	margin: 0 5px;
+}
+
+/* event list filter */
+
+.event-filter {
+	background: #0a1b2a;
+	width: 100%;
+	margin: 0;
+	padding: 15px 0;
+	text-align: center;
+	font-family: "Beaufort";
+}
+
+.event-filter * {
+	cursor: default;
+}
+
+.event-filter li {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.event-filter a {
+	margin: 0 20px;
+	padding: 20px 20px;
+	text-transform: uppercase;
+}
+
+.event-filter a * {
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.event-filter img {
+	padding: 0;
+	margin: 0;
+	filter: grayscale(1);
+	transition: .2s ease;
+}
+
+.event-filter a:hover img {
+	filter: grayscale(0);
+	transform: scale(1.1);
+}
+
+.event-filter li.onpage img {
+	filter: grayscale(0);
+	transform: scale(1.1);
+}
+
 
 /* home active article  */
 
@@ -430,12 +561,14 @@ main {
 .inp-search {
 	position: relative;
 	bottom: 0;
-	color: #3086d1;
+	color: #ffb83d;
 	margin-left: 50px;
+	border-bottom: solid 0 rgb(255, 208, 53);
+	transition: .3s;
 }
 
 .inp-search:focus {
-	border-bottom: solid 1px #4FADFF;
+	border-bottom-width: 3px;
 }
 
 /* list article */
@@ -459,8 +592,16 @@ article {
 	font-family: "Beaufort";
 }
 
+article .img-background {
+	opacity: .6;
+}
+
 article:hover img {
 	transform: scale(1.07);
+}
+
+article:hover .img-background {
+	opacity: 1 !important;
 }
 
 article div:nth-child(1) {
@@ -509,6 +650,14 @@ article img {
 .pagination a.onpage {
 	background: #F7A71F;
 }
+
+.pagination a.arrow {
+	background: none;
+	color: #4FADFF;
+	font-weight: 800;
+	vertical-align: middle;
+}
+
 
 /* view article page */
 
@@ -740,7 +889,7 @@ footer p:nth-child(2) {
 
 /* -- media querys -- */
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px) {
 
 	/* --- global css --- */
 
@@ -806,7 +955,8 @@ footer p:nth-child(2) {
 		margin-top: 30px;
 		padding: 0;
 		padding: 35px 0;
-		color: #2677BE;
+		color: #2f85d1;
+		font-weight: 800;
 	}
 
 	/* footer */
@@ -814,7 +964,7 @@ footer p:nth-child(2) {
 	/* AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGF */
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 800px) {
 
 	/* --- global css --- */
 

@@ -58,10 +58,11 @@ class model {
 
         $sql = "";
 
-        $range = count($data);
+        $last_post = count($data[0])-1;
 
-        $last_post = $data[0][$range+1];
+        $last_post = $data[0][$last_post];
 
+        // die();
         foreach ($data[0] as $post_id) {
             if ((int)$post_id->post_id == (int)$last_post->post_id) {
                 $sql .= "(SELECT * FROM linfo_articles WHERE a_id = $post_id->post_id)";
@@ -177,15 +178,17 @@ class model {
 
     // -- events --
 
-    function getAllEvents() {
+    function getEvents($filter = 'lcs') {
+
+        $filter = filter_var($filter, FILTER_SANITIZE_STRIPPED);
 
         $db = dbConnect();
 
-        $sql = "SELECT * FROM linfo_events ORDER BY e_date DESC";
+        $sql = "SELECT * FROM linfo_events WHERE e_filter = ? ORDER BY e_date DESC";
 
         $sm = $db->prepare($sql);
 
-        if (!$sm->execute()) {
+        if (!$sm->execute(array($filter))) {
             echo "something not ok <br>";
             echo "error-code: 8";
         }

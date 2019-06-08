@@ -19,8 +19,6 @@ $controller = $router->getController($routes);
 
 $extension = $router->checkExtension($routes);
 
-// echo $controller;
-
 if ($controller) {
     try {
         $linkToController = "/../private/controllers/" . $controller . ".php";

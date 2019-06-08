@@ -5,30 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>login into cms</title>
+    <link rel="stylesheet" href="css/cms.css">
 </head>
-<body>
-    <form method="get">
-        <input type="text" name="usern"
+<body class="preload">
+    <form method="post" action="./admin">
+        <h1>cms login</h1>
+        <input type="password" name="passw" placeholder="Password.." maxlength="60" autofocus>
+        <input type="submit" value="login to cms">
+        <?php
+            if ($incorrect) {
+                echo "<p>incorrect password</p>";
+            }
+        ?>
     </form>
 </body>
+
+    <script type="text/javascript">
+        let body = document.querySelector('body');
+        body.classlist.remove('preload');
+    </script>
+
 </html>
-<?php
-
-function checkLogin($usern = null, $passw = null) {
-    $db = dbConnect();
-
-    $sql = "SELECT username FROM linfo_cms_accounts WHERE usern = $usern";
-
-    $sm = $db->prepare($sql);
-
-    if (!$sm->execute()) {
-        echo "something went wrong";
-        die();
-    }
-}
-
-if (isset($_GET['submit'])) {
-    $usern = filter_var($_POST['usern'], FILTER_SANITIZE_STRING);
-    $passw = filter_var($_POST['password'], FILTER_SANITIZE_MAGIC_QUOTES);
-    checkLogin($usern, $passw);
-}

@@ -1,6 +1,6 @@
 <main class="flex">
     <form method="post" action="./login" class="form-default">
-        <input name="email" type="email" class="inp-open" placeholder="Email..">
+        <input name="email" type="email" class="inp-open" placeholder="Email.." autofocus>
         <input type="password" name="passw" autocomplete="on" class="inp-open" placeholder="Password..">
         <input type="submit" class="btn-active" value="login">
         <p>Don't have a account? <br><a href="./register">Register <span style="color: #ffc45f">here</span></a></p>

@@ -1,0 +1,161 @@
+/*
+*   author: Wiebe Ranzijn / Huntski
+*   class: MD1A
+*/
+
+.preload * {
+	-webkit-transition: none !important;
+	-moz-transition: none !important;
+	-ms-transition: none !important;
+	-o-transition: none !important;
+}
+
+/* ------------ reset browser css ------------ */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ------------ global css ------------ */
+
+/*
+	colors:
+		orange {
+			#F7A71F dark orange
+			#FFC45F light orange
+		}
+
+		blue {
+			#11314e darkest blue
+			#1B5C94
+			#2677BE
+			#4FADFF
+			#9BD1FF
+			#C0E2FF lighest blue
+		}
+*/
+
+/* remove scrollbar */
+
+::-webkit-scrollbar { display: none; }
+
+@font-face {
+	font-family: "Beaufort";
+	src: url(../fonts/Beaufort-Bold.ttf);
+	font-weight: 700;
+}
+
+html {
+	position: relative;
+	height: 100%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: #0e2a42;
+	color: #fff;
+	height: 100%；
+}
+
+* {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* ------------ layout css ------------ */
+
+form {
+	width: 500px;
+	margin: 0 auto;
+	background: #195182;
+	text-align: center;
+	padding: 60px 0;
+	margin-top: 10vh;
+}
+
+form * { display: block; margin: 23px auto; }
+
+form h1 {
+	font-family: "Beaufort";
+	font-weight: 700;
+	font-size: 1.5em;
+	text-transform: uppercase;
+	color: #ffa125;
+}
+
+form input[type=password] {
+	padding: 16px 25px;
+	border: none;
+}
+
+form input[type=submit] {
+	padding: 9px 15px;
+	text-transform: uppercase;
+	font-weight: 600;
+	border: none;
+	background: #ffae44;
+	color: #195182;
+	border-bottom: solid 5px #e49125;
+	cursor: pointer;
+	transition: 3s ease;
+}
+
+form input[type=submit]:active {
+	margin-top: 26px;
+	border-bottom-width: 2px;
+}
+
+form p {
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}

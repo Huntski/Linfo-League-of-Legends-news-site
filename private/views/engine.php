@@ -7,7 +7,7 @@ class template_engine {
 
         if (!count($data)) die();
 
-        include "templates/header.php";
+        if (!in_array("nohead", $data)) include "templates/header.php";
 
         switch ($data[0]) {
             case "news":
@@ -46,7 +46,17 @@ class template_engine {
 
             case "events":
                 $event_list = $data[1];
+                $filter = $data[2];
                 include "templates/events.php";
+                break;
+
+            case "cms_login":
+                $incorrect = $data[2];
+                include "templates/cms_login.php";
+                break;
+
+            case "cms":
+                include "templates/cms.php";
                 break;
 
             default:
@@ -55,6 +65,6 @@ class template_engine {
                 break;
         }
 
-        include "templates/footer.php";
+        if (!in_array("nohead", $data)) include "templates/footer.php";
     }
 }

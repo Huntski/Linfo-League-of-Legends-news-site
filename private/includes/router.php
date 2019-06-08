@@ -43,7 +43,7 @@ class router {
                 $controller = "NewsController";
                 break;
 
-            case "events":
+            case strpos($routes[0], "events"):
                 if (!isset($_SESSION['userid'])) {
                     header("location: ./register");
                 }
@@ -83,7 +83,7 @@ class router {
                 $controller = "AccountController";
                 break;
 
-            case "cms":
+            case "admin":
                 $controller = "AdminController";
                 break;
 
@@ -96,17 +96,19 @@ class router {
 
     function getCoreUrl() {
         $basepath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
+
         return $basepath;
     }
 
     function getUrl() {
         $url = $_SERVER['REQUEST_URI'];
+
         return $url;
     }
 
     function checkExtension($routes) {
-        if (!strpos( $routes[0], "-")) return false;
+        if (!strpos($routes[0], "-")) return false;
 
-        return (int)explode("-", $routes[0])[1];
+        return explode("-", $routes[0])[1];
     }
 }

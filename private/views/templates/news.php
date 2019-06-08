@@ -46,6 +46,9 @@
     <div class="pagination">
         <?php
         $pages = ceil($articleCount / LIST_LIMIT);
+        if ($page != 1) {
+            echo "<a class='arrow' href='./news-".($page-1)."'>&#60;</a>";
+        }
 
         for ($i = 1; $i <= $pages; $i++) {
             if ($i == $page) {
@@ -53,6 +56,10 @@
             } else {
                 echo "<a href='./news-$i'>$i</a>";
             }
+        }
+
+        if ($page < $pages) {
+            echo "<a class='arrow' href='./news-".($page+1)."'>&#62;</a>";
         }
 
         ?>

@@ -45,11 +45,10 @@ if (isset($_SESSION['userid'])) {
                 <?php
                     if (isset($user_info)) {
                         echo "
-                        <a href='./settings'><img class='settings' src='img/settingsIcon.png'></a>
                         <a href='./user'>
-                        <div class='avatar'>
-                            <img src='img/avatar/".$user_info->user_avatar."'></img>
-                        </div>
+                            <div class='avatar'>
+                                <img src='img/avatar/".$user_info->user_avatar."'></img>
+                            </div>
                         </a>";
                     } else {
                         echo "<a href='". $router->getCoreUrl() . "login" ."'><button class=\"btn-active login\">login</button></a>";
@@ -59,9 +58,8 @@ if (isset($_SESSION['userid'])) {
                 <nav>
                     <ul>
                         <li><a href="home" class="<?php if ($routes[0] == "home") { echo "onpage"; } ?>">home</a></li>
-                        <li><a href="players" class="<?php if ($routes[0] == "players") { echo "onpage"; } ?>">players</a></li>
-                        <li><a href="news" class="<?php if ($routes[0] == "news") { echo "onpage"; } ?>">news</a></li>
-                        <li><a href="events" class="<?php if ($routes[0] == "events") { echo "onpage"; } ?>">events</a></li>
+                        <li><a href="news" class="<?php if (strpos($routes[0], "ews") !== false) { echo "onpage"; } ?>">news</a></li>
+                        <li><a href="events" class="<?php if (strpos($routes[0], "vents") !== false) { echo "onpage"; } ?>">events</a></li>
                     </ul>
                 </nav>
             </div>
@@ -74,13 +72,13 @@ if (isset($_SESSION['userid'])) {
             <nav>
                 <ul>
                     <li><a href="home" class="<?php if ($routes[0] == "home") { echo "onpage"; } ?>">home</a></li>
-                    <li><a href="players" class="<?php if ($routes[0] == "players") { echo "onpage"; } ?>">players</a></li>
-                    <li><a href="news" class="<?php if ($routes[0] == "news") { echo "onpage"; } ?>">news</a></li>
-                    <li><a href="events" class="<?php if ($routes[0] == "events") { echo "onpage"; } ?>">events</a></li>
+                    <li><a href="news" class="<?php if (strpos($routes[0], "ews") !== false) { echo "onpage"; } ?>">news</a></li>
+                    <li><a href="events" class="<?php if (strpos($routes[0], "vents") !== false) { echo "onpage"; } ?>">events</a></li>
                 </ul>
             </nav>
 
             <?php
+
             if (isset($user_info)) {
                 echo "
                 <a href='./user'>
