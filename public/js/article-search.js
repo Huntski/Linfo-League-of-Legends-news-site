@@ -8,6 +8,9 @@ inp_search.addEventListener('keyup', () => { setTimeout(searchForArticle,1); });
 function searchForArticle() {
 
     if (!inp_search.value) {
+        try {
+            document.querySelector('.pagination').style.display = 'block';
+        } catch (e) {}
         article_list.innerHTML = default_list;
         return;
     }
@@ -20,7 +23,7 @@ function searchForArticle() {
     xmlhttp.onreadystatechange = function () {
         if (this.status == 4 || this.status == 200) {
             let obj = JSON.parse(this.response);
-            let limit = 6;
+            let limit = 10;
             let a = 0;
             let html = '';
             for (let i in obj) {
@@ -45,7 +48,13 @@ function searchForArticle() {
                     `;
                 }
             }
+            try {
+                document.querySelector('.pagination').style.display = 'none';
+            } catch (e) {}
             article_list.innerHTML = html;
+            if (!article_list.innerHTML) {
+                article_list.innerHTML = 'nothing found';
+            }
         }
     }
 
