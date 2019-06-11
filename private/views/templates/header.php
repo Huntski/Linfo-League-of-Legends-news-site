@@ -16,6 +16,13 @@ if (isset($_SESSION['userid'])) {
     }
 }
 
+
+// var_dump($routes);
+
+$page = (string)explode('-', $routes[0])[0];
+
+$page == 'home' ? $page = '' : $page = '· '. $page;
+
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +31,12 @@ if (isset($_SESSION['userid'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>linfo</title>
+    <title>linfo <?= $page ?></title>
     <link rel="icon" href="img/linfo-logo.png">
     <?php
         echo '<link rel="stylesheet" href="css/style.css">';
     ?>
+    <script src="js/jquery-3.2.1.min.js"></script>
 </head>
 <body class="preload">
     <header>

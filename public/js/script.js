@@ -1,7 +1,6 @@
 let body = document.querySelector('body');
 setTimeout(() => {
     body.classList.remove('preload');
-    console.info("Page Preloaded");
 }, 1);
 
 // dropdown menu
@@ -28,13 +27,16 @@ menu_icon.addEventListener('click', () => {
     main.removeEventListener('click', hideMenu);
 });
 
-let active_bg = document.querySelector('.article-active > .img-background');
-let read_more = document.querySelector('.article-active > div > a > button'); // :P
+try {
+    let active_bg = document.querySelector('.article-active > .img-background');
+    let read_more = document.querySelector('.article-active > div > a > button'); // :P
+    read_more.addEventListener('mouseover', function() {
+        active_bg.style.opacity = '.4';
+    });
 
-read_more.addEventListener('mouseover', function() {
-    active_bg.style.opacity = '.4';
-});
-
-read_more.addEventListener('mouseout', function() {
-    active_bg.style.opacity = '.5';
-});
+    read_more.addEventListener('mouseout', function() {
+        active_bg.style.opacity = '.5';
+    });
+} catch (e) {
+    //
+}

@@ -55,3 +55,5 @@
         </div>
     </div>
 </main>
+
+<script src="js/article-search.js"></script>

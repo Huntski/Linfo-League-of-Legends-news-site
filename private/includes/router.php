@@ -87,6 +87,10 @@ class router {
                 $controller = "AdminController";
                 break;
 
+            case strpos($routes[0], "search"):
+                $controller = "SearchController";
+                break;
+
             default:
                 $controller = "HomeController";
                 break;
