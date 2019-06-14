@@ -34,6 +34,13 @@ class AdminController {
                 $model->uploadArticle($title, $par, $author, $img);
             }
 
+            if (isset($_POST['submit_event'])) {
+                $team1 = $_POST['team1'];
+                $team2 = $_POST['team2'];
+                $team_img = $_POST[''];
+                $date = $_POST['date'];
+            }
+
             $template_engine->render("cms", "nohead");
         } else {
 

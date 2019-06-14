@@ -3,9 +3,7 @@
 class template_engine {
     function render(...$data) {
 
-        var_dump($data);
-
-        echo "render engine";
+        // var_dump($data);
 
         // the way I transfer data to templates needs to change
 

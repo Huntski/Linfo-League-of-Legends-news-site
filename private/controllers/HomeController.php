@@ -13,9 +13,9 @@ class HomeController {
             }
 
             $allArticles = $model->getArticles(0, 7);
-            echo "articles: <br><pre>";
+            // echo "articles: <br><pre>";
             // var_dump($allArticles);
-            echo "</pre>";
+            // echo "</pre>";
             if ($debug) echo "<script type='text/javascript'>console.log('Found: ARTICLE_LIST')</script>";
         } catch (\Exception $e) {
             echo "error found: $e";
