@@ -2,7 +2,7 @@
 // var_dump($user_info);
 ?>
 <main class="flex">
-    <form action="./settings" method="post" enctype="multipart/form-data" class="form-default">
+    <form action="<?=$uri?>settings" method="post" enctype="multipart/form-data" class="form-default">
         <p>Changing your password or email is <br>temporarly not allowed due to security not correctly implomented.</p><br>
         <div class='avatar'>
             <img src='<?=$uri?>img/avatar/<?= $user_info->user_avatar ?>'></img>

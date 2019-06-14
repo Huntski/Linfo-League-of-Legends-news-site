@@ -55,7 +55,7 @@ $uri = $router->getCoreUrl();
                 <?php
                     if (isset($user_info)) {
                         echo "
-                        <a href='./user'>
+                        <a href='".$uri."user'>
                             <div class='avatar'>
                                 <img src='img/avatar/".$user_info->user_avatar."'></img>
                             </div>

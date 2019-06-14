@@ -1,5 +1,8 @@
 <?php
+
+    if (!count($allArticles)) array_push($allArticles, "no articles found");
     $active_article = $allArticles[0];
+
 ?>
 
 <main>
@@ -24,27 +27,30 @@
 
     <div class="article-list">
         <?php
-        foreach ($allArticles as $article_info) {
-            if ($article_info != $active_article) {
-                $subtitle = explode(" ", $article_info->a_par);
-                count($subtitle) >= 6 ? $sub_limit = 6 : $sub_limit = count($subtitle);
-                $article_par = "";
-                for ($i = 0; $i < $sub_limit; $i++) {
-                    $article_par .= $subtitle[$i] . " ";
+        if ($allArticles) {
+            foreach ($allArticles as $article_info):
+                if ($article_info != $active_article) {
+                    $subtitle = explode(" ", $article_info->a_par);
+                    count($subtitle) >= 6 ? $sub_limit = 6 : $sub_limit = count($subtitle);
+                    $article_par = "";
+                    for ($i = 0; $i < $sub_limit; $i++) {
+                        $article_par .= $subtitle[$i] . " ";
+                    } ?>
+                        <article>
+                            <a href='article-<?=htmlspecialchars($article_info->a_id)?>'>
+                                <div>
+                                <h1><?=$article_info->a_title?></h1>
+                                <h2><?=$article_par?></h2>
+                                </div>
+                                <div class="img-background">
+                                    <img src="img/<?php echo explode(",", $article_info->a_img_links)[0] ?>" alt="lol">
+                                </div>
+                            </a>
+                        </article> <?php
                 }
-                echo "
-                    <article>
-                        <a href='article-".$article_info->a_id."'>
-                            <div>
-                            <h1>".$article_info->a_title."</h1>
-                            <h2>".$article_par."</h2>
-                            </div>
-                            <div class=\"img-background\">
-                                <img src=\"img/". explode(",", $article_info->a_img_links)[0] ."\" alt=\"\">
-                            </div>
-                        </a>
-                    </article>";
-            }
+            endforeach;
+        } else {
+            echo "no articles found";
         }
         ?>
     </div>

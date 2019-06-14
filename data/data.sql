@@ -28,3 +28,13 @@ create table IF NOT EXISTS `linfo_saves` (
     post_id INT,
     user_id varchar(1000)
 );
+
+
+-- post article
+insert into linfo_articles (a_title, a_par, a_img_links) values ();
+
+-- post event
+insert into linfo_events () values ()
+
+-- remove all from "table"
+delete from "table"

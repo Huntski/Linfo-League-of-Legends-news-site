@@ -23,6 +23,17 @@ class AdminController {
 
         if (isset($_SESSION['admin']) == "f()ubiuhgvreoiu;[v===ferf'fr4324b38h347hfb4yubc7cbY31BSCFUBEUbfYU3333U9-CREYYU34G32DH9C93NjniJUFNRENfeferf;;;JJNVCJJ") {
 
+            if (isset($_POST['submit_article'])) {
+                $title = filter_var($_POST['title']);
+                $par = filter_var($_POST['par']);
+                $img = $_POST['img']; // does not check if img is img file
+                $author = filter_var($_POST['author']);
+
+                $model = new model;
+
+                $model->uploadArticle($title, $par, $author, $img);
+            }
+
             $template_engine->render("cms", "nohead");
         } else {
 

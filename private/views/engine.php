@@ -3,6 +3,10 @@
 class template_engine {
     function render(...$data) {
 
+        var_dump($data);
+
+        echo "render engine";
+
         // the way I transfer data to templates needs to change
 
         if (!count($data)) {echo "no data found";die();}
