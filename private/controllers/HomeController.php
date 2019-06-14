@@ -2,16 +2,18 @@
 
 class HomeController {
     function loadPage() {
+        $debug = true;
         try {
 
             $model = new model;
 
             if (isset($_SESSION['userid'])) {
                 $user_info = $model->getUserInformation($_SESSION['userid']);
+                if ($debug) echo "<script type='text/javascript'>console.log('Found: USER_INFO')</script>";
             }
 
             $allArticles = $model->getArticles(0, 7);
-
+            if ($debug) echo "<script type='text/javascript'>console.log('Found: ARTICLE_LIST')</script>";
         } catch (\Exception $e) {
             echo "error found: $e";
             die();

@@ -23,6 +23,8 @@ $page = (string)explode('-', $routes[0])[0];
 
 $page == 'home' ? $page = '' : $page = '· '. $page;
 
+$uri = $router->getCoreUrl();
+
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +36,7 @@ $page == 'home' ? $page = '' : $page = '· '. $page;
     <title>linfo <?= $page ?></title>
     <link rel="icon" href="img/linfo-logo.png">
     <?php
-        echo '<link rel="stylesheet" href="css/style.css">';
+        echo '<link rel="stylesheet" href="'.$uri.'css/style.css">';
     ?>
     <script src="js/jquery-3.2.1.min.js"></script>
 </head>
@@ -59,15 +61,15 @@ $page == 'home' ? $page = '' : $page = '· '. $page;
                             </div>
                         </a>";
                     } else {
-                        echo "<a href='". $router->getCoreUrl() . "login" ."'><button class=\"btn-active login\">login</button></a>";
+                        echo "<a href='". $uri . "login" ."'><button class=\"btn-active login\">login</button></a>";
                     }
                 ?>
 
                 <nav>
                     <ul>
-                        <li><a href="home" class="<?php if ($routes[0] == "home") { echo "onpage"; } ?>">home</a></li>
-                        <li><a href="news" class="<?php if (strpos($routes[0], "ews") !== false) { echo "onpage"; } ?>">news</a></li>
-                        <li><a href="events" class="<?php if (strpos($routes[0], "vents") !== false) { echo "onpage"; } ?>">events</a></li>
+                        <li><a href="<?=$uri?>home" class="<?php if ($routes[0] == "home") { echo "onpage"; } ?>">home</a></li>
+                        <li><a href="<?=$uri?>news" class="<?php if (strpos($routes[0], "ews") !== false) { echo "onpage"; } ?>">news</a></li>
+                        <li><a href="<?=$uri?>events" class="<?php if (strpos($routes[0], "vents") !== false) { echo "onpage"; } ?>">events</a></li>
                     </ul>
                 </nav>
             </div>
@@ -79,9 +81,9 @@ $page == 'home' ? $page = '' : $page = '· '. $page;
             </div>
             <nav>
                 <ul>
-                    <li><a href="home" class="<?php if ($routes[0] == "home") { echo "onpage"; } ?>">home</a></li>
-                    <li><a href="news" class="<?php if (strpos($routes[0], "ews") !== false) { echo "onpage"; } ?>">news</a></li>
-                    <li><a href="events" class="<?php if (strpos($routes[0], "vents") !== false) { echo "onpage"; } ?>">events</a></li>
+                    <li><a href="<?=$uri?>home" class="<?php if ($routes[0] == "home") { echo "onpage"; } ?>">home</a></li>
+                    <li><a href="<?=$uri?>news" class="<?php if (strpos($routes[0], "ews") !== false) { echo "onpage"; } ?>">news</a></li>
+                    <li><a href="<?=$uri?>events" class="<?php if (strpos($routes[0], "vents") !== false) { echo "onpage"; } ?>">events</a></li>
                 </ul>
             </nav>
 
@@ -95,7 +97,7 @@ $page == 'home' ? $page = '' : $page = '· '. $page;
                 </div>
                 </a>";
             } else {
-                echo "<a href='". $router->getCoreUrl() . "login" ."'><button class=\"btn-active login\">login</button></a>";
+                echo "<a href='". $uri . "login" ."'><button class=\"btn-active login\">login</button></a>";
             }
             ?>
         </div>

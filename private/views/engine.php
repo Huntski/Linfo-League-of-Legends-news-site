@@ -5,9 +5,9 @@ class template_engine {
 
         // the way I transfer data to templates needs to change
 
-        if (!count($data)) die();
+        if (!count($data)) {echo "no data found";die();}
 
-        if (!in_array("nohead", $data)) include "templates/header.php";
+        include "templates/header.php";
 
         switch ($data[0]) {
             case "news":
@@ -65,6 +65,6 @@ class template_engine {
                 break;
         }
 
-        if (!in_array("nohead", $data)) include "templates/footer.php";
+        include "templates/footer.php";
     }
 }

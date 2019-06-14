@@ -12,12 +12,11 @@
         </div>
         <div class="user-info">
             <h2><?= $user_info->user_name ?></h2>
-            <a href='./settings'><img class='settings' src='img/settingsIcon.png'></a>
+            <a href='<?=$router->getCoreUrl();?>settings'><img class='settings' src='img/settingsIcon.png'></a>
         </div>
 
-        <div class="list-menu">
+        <div class="list-menu" style="padding-bottom: 5px;">
             <p>Saved articles</p>
-            <input type="search" name="search" class="inp-search search-article" autocomplete="off" placeholder="Search title..">
         </div>
 
         <div class="article-list">
@@ -44,7 +43,7 @@
                         </article>";
                 }
             } else {
-                echo "nothing found <br>";
+                echo "no articles saved <br>";
                 // if ($debug) {
                 //     echo "<pre> <br>";
                 //     var_dump($article_list);
@@ -55,5 +54,3 @@
         </div>
     </div>
 </main>
-
-<script src="js/article-search.js"></script>

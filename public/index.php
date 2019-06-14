@@ -1,6 +1,7 @@
 <?php
 
-// error_reporting(0);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 session_start();
 
@@ -12,7 +13,10 @@ $routes = $router->getRoutes();
 
 if ($routes[0] == 'logout') {
     session_destroy();
-    header("location: ./");
+
+    $uri = $router->getCoreUrl();
+
+    header("location: $uri");
 }
 
 $controller = $router->getController($routes);
@@ -20,6 +24,8 @@ $controller = $router->getController($routes);
 $extension = $router->checkExtension($routes);
 
 if ($controller) {
+
+    // echo $controller;
     try {
         $linkToController = "/../private/controllers/" . $controller . ".php";
         require __DIR__ . $linkToController;

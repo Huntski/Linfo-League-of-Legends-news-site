@@ -5,8 +5,12 @@ $debug = true;
 class LoginController {
     function loadPage() {
 
+        $router = new router;
+
+        $uri = $router->getCoreUrl();
+
         if (isset($_SESSION['userid'])) {
-            header("location: ./");
+            header("location: $uri");
         }
 
         $error = false;
@@ -21,11 +25,9 @@ class LoginController {
 
                 if ($user_id) {
 
-                    // echo "<br> $user_id <br>";
-
                     $_SESSION['userid'] = $user_id;
 
-                    header("location: ./");
+                    header("location: $uri");
                 } else {
                     $error = true;
                 }

@@ -60,26 +60,30 @@ class model {
 
         $last_post = count($data[0])-1;
 
-        $last_post = $data[0][$last_post];
+        if ($last_post < 0) $last_post = 0;
 
-        // die();
-        foreach ($data[0] as $post_id) {
-            if ((int)$post_id->post_id == (int)$last_post->post_id) {
-                $sql .= "(SELECT * FROM linfo_articles WHERE a_id = $post_id->post_id)";
-            } else {
-                $sql .= "(SELECT * FROM linfo_articles WHERE a_id = $post_id->post_id) union ";
+        if ($last_post) {
+
+            $last_post = $data[0][$last_post];
+
+            foreach ($data[0] as $post_id) {
+                if ((int)$post_id->post_id == (int)$last_post->post_id) {
+                    $sql .= "(SELECT * FROM linfo_articles WHERE a_id = $post_id->post_id)";
+                } else {
+                    $sql .= "(SELECT * FROM linfo_articles WHERE a_id = $post_id->post_id) union ";
+                }
             }
+
+            $sm = $db->prepare($sql);
+
+            if (!$sm->execute()) {
+                echo "something not ok <br>";
+                echo "error-code: 93";
+                die();
+            }
+
+            return $sm->fetchAll(\PDO::FETCH_CLASS);
         }
-
-        $sm = $db->prepare($sql);
-
-        if (!$sm->execute()) {
-            echo "something not ok <br>";
-            echo "error-code: 93";
-            die();
-        }
-
-        return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
 
     // ------------ get a list of articles with a certain offset ------------
@@ -298,16 +302,23 @@ class model {
 
         $usern = filter_var($usern, FILTER_SANITIZE_STRING);
 
-        $passw = password_hash($passw, PASSWORD_ARGON2I);
+        $passw = password_hash($passw, 1);
 
-        $sql = "INSERT INTO linfo_users (`user_id`, `user_email`, `user_passw`, `user_name`) VALUES (?, ?, ?, ?)";
-        $data = array($user_id, $email, $passw, $usern);
+            // echo "id: $user_id" . "<br>";
+            // echo "email: $email" . "<br>";
+            // echo "passw: $passw" . "<br>";
+            // echo "usern: $usern" . "<br>";
+
+        $sql = "INSERT INTO linfo_users (`user_id`, `user_email`, `user_passw`, `user_name`) VALUES ('$user_id', '$email', '$passw', '$usern')";
+
+        // echo $sql;
+        // die();
 
         $db = dbConnect();
 
         $sm = $db->prepare($sql);
 
-        if (!$sm->execute($data)) {
+        if (!$sm->execute()) {
             echo "something not ok <br>";
             echo "error-code: 13";
             die();
@@ -315,7 +326,10 @@ class model {
 
         $_SESSION['userid'] = $user_id;
 
-        header("location: ./");
+        $router = new router;
+        $uri = $router->getCoreUrl();
+
+        header("location: $uri");
     }
 
     // ------------ save article for user ------------
@@ -512,5 +526,31 @@ class model {
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
 
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+    }
+
+
+
+    // ------------  * cms settings *  ------------
+
+    function addArticle($title, $par, $img) {
+
+        $title = htmlspecialchars($title);
+        $par = htmlspecialchars($par);
+
+        if ($img['size']) {
+            $img_ok = 1;
+        }
+
+        $target_dir = "img/";
+        $target_file = $target_dir . basename($img['a_img']['tnp_name']);
+        // if () {}
+
+        $db = dbConnect();
+
+        $sql = "INSERT INTO linfo_articles (a_title, a_par, a_img_links, a_author) VALUES (?, ?, ?)";
+
+        $sm = $db->prepare($sql);
+
+        $data = array($title, $par, $target_file);
     }
 }

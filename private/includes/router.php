@@ -27,25 +27,31 @@ class router {
     }
 
     function getController($routes) {
+        $router = new router;
+        $uri = $router->getCoreUrl();
+
         switch ($routes[0]) {
 
             case "players":
                 if (!isset($_SESSION['userid'])) {
-                    header("location: ./register");
+                    $uri .= 'register';
+                    header("location: $uri");
                 }
                 $controller = "PlayersController";
                 break;
 
             case strpos($routes[0], "news"):
                 if (!isset($_SESSION['userid'])) {
-                    header("location: ./register");
+                    $uri .= 'register';
+                    header("location: $uri");
                 }
                 $controller = "NewsController";
                 break;
 
             case strpos($routes[0], "events"):
                 if (!isset($_SESSION['userid'])) {
-                    header("location: ./register");
+                    $uri .= 'register';
+                    header("location: $uri");
                 }
                 $controller = "EventsController";
                 break;
@@ -56,7 +62,8 @@ class router {
 
             case "settings":
                 if (!isset($_SESSION['userid'])) {
-                    header("location: ./register");
+                    $uri .= 'register';
+                    header("location: $uri");
                 }
                 $controller = "SettingsController";
                 break;
@@ -71,14 +78,16 @@ class router {
 
             case strpos($routes[0], "article"):
                 if (!isset($_SESSION['userid'])) {
-                    header("location: ./register");
+                    $uri .= 'register';
+                    header("location: $uri");
                 }
                 $controller = "ArticleController";
                 break;
 
             case strpos($routes[0], "user"):
                 if (!isset($_SESSION['userid'])) {
-                    header("location: ./register");
+                    $uri .= 'register';
+                    header("location: $uri");
                 }
                 $controller = "AccountController";
                 break;
