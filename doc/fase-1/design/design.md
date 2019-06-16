@@ -1,13 +1,11 @@
 # Schermontwerpen
 
-Zet hier je schermontwerpen en designs in met een korte omschrijving
-
-**Afbeelding 1**  
+**Home Page**  
 Homepage
-![Afbeelding 1](schermontwerp-1.jpg)
+![Home page](home.png)
 ___
 
-**Afbeelding 2**  
+**Events Page**  
 Agenda pagina
-![Afbeelding 1](schermontwerp-1.jpg)
+![Events page](events.PNG)
 ___
