@@ -1,8 +1,8 @@
 # Functioneel ontwerp
 
-Linfo, een league of legends nieuws site waar je artikelen kunt lezen van league of legends en de league of legends esports.
+Linfo, een lol (league of legends) nieuws site waar je artikelen kunt lezen van lol en de lolesports.
 
-Doelgroep: Mensen die geinteresseerd zijn in league of legends of league of legends esports.
+Doelgroep: Mensen die geinteresseerd zijn in lol of lolesports.
 
 
 ### Doel
