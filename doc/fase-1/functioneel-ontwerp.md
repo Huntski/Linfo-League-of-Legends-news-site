@@ -9,6 +9,8 @@ Doelgroep: Mensen die geinteresseerd zijn in league of legends of league of lege
 
 Linfo's doel is om voor mensen die lol spelen of kijken het makkelijker te maken om zoveel mogelijk te weten komen over waar zij geinteresseerd in zijn.
 
+### Structuur
+
 - Header
   - Logo
   - Navigation for home, news & events
@@ -63,9 +65,45 @@ Linfo's doel is om voor mensen die lol spelen of kijken het makkelijker te maken
       - Email
       - Password
       
-  - Footer
-    - Linfo's name
-    - Contact email
+- Footer
+  - Linfo's name
+  - Contact email
+  
+### Uitwerking
+
+Het uitwerking voor de header, main en footer wordt eerst gedaan voor mobile. Hierdoor is het wat makkelijker om uiteindelijk de desktop versie te maken. Elke pagina komt grootendeels op hetzelfde desgin structuur uit met header, main & footer dus elke pagina kan een groot deel van de code van andere pagina's overnemen.
+
+### Functionaliteiten
+
+- Home
+  - Een paar meest recente artikelen waar je naar kan navigeren worden laten zien
+  
+- News
+  - Er word een lijst met alle artikelen laten zien waar je uit kan kiezen om een artikel te bekijken
+  - Pagination
+  
+- Artikel
+  - Hier kan je een artikel compleet bekijken
+  - Je kan ook comments achter laten.
+
+- Events
+  - Er word een lijst met alle opkomende events laten zien.
+  - De lijst kan gefilterd worden op region
+
+- Login / Register
+  - Je kan hier inloggen of registreren voor linfo om artikelen te kunnen bekijken.
+
+- Account
+  - Je kan je account bekijken en een lijst met opgeslagen artikelen bekijken
+
+- Settings
+  - Dingen die je van je account kan aanpassen:
+      - Avatar
+      - Username
+      - Password
+      - Email
+  - Ook kan je uitloggen
+  
   
      
       
