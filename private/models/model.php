@@ -41,7 +41,7 @@ class model {
 
         $db = dbConnect();
 
-        $sql = "SELECT a_id, a_title, a_par, a_img_links FROM linfo_articles WHERE a_id = $id";
+        $sql = "SELECT a_id, a_title, a_par, a_img_links, a_author FROM linfo_articles WHERE a_id = $id";
 
         $sm = $db->prepare($sql);
         if (!$sm->execute()) {

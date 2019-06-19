@@ -694,6 +694,11 @@ article img {
 	margin: 30px 0 10px 0;
 }
 
+.view-article h3 {
+	margin-left: 30px;
+	color: #2f85d1;
+}
+
 .view-article p {
 	color: #e9e9e9;
 	margin: 30px;

@@ -1,9 +1,3 @@
-<?php
-
-// echo "test";
-
-?>
-
 <main>
     <div class="view-article">
 
@@ -20,13 +14,21 @@
 
             echo $a_par;
             ?></p>
+            <h3><?php
+            $timestamp = strtotime($article_info->a_datum);
+
+            $date = date("M j Y", $timestamp);
+
+            echo "$date <br>By: " . $article_info->a_author;
+            ?></h3>
+            <h3></h3>
         </div>
 
         <form method="post" action="./article-<?= $article_info->a_id ?>">
             <button type="submit" name="save"><img src='img/icon_save.png'> save</button>
         </form>
 
-        <form method="post" action="./article-<?= $article_info->a_id ?>" class="form-comment">
+        <form method="post" action="$router-article-<?= $article_info->a_id ?>" class="form-comment">
             <div class="avatar">
                 <img src="img/avatar/<?= $user_info->user_avatar ?>" alt=" ">
             </div>
@@ -38,7 +40,6 @@
             <?php
 
             foreach($article_comments as $comment) {
-                $model = new model;
 
                 // SRY SRY SRY !!
                 // I know this code is rly badly structured BUT IT WORKS so I am not changing it..
