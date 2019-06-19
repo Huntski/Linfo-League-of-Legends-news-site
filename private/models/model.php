@@ -146,11 +146,11 @@ class model {
 
         $db = dbConnect();
 
-        $sql = "SELECT user_id, comment FROM linfo_comments WHERE post_id = :id ORDER BY `date` DESC";
+        $sql = "SELECT `user_id`, `comment` FROM linfo_comments WHERE post_id = '$post_id' ORDER BY `comment_date` DESC";
 
         $sm = $db->prepare($sql);
 
-        if (!$sm->execute(array('id' => $post_id))) {
+        if (!$sm->execute()) {
             echo "something not ok <br>";
             echo "error-code: 6";
             die();
@@ -188,13 +188,14 @@ class model {
 
         $db = dbConnect();
 
-        $sql = "SELECT * FROM linfo_events WHERE e_filter = ? ORDER BY e_date DESC";
+        $sql = "SELECT * FROM linfo_events WHERE e_filter = '$filter' ORDER BY e_date DESC";
 
         $sm = $db->prepare($sql);
 
-        if (!$sm->execute(array($filter))) {
+        if (!$sm->execute()) {
             echo "something not ok <br>";
             echo "error-code: 8";
+            die();
         }
         return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
@@ -209,6 +210,7 @@ class model {
         if (!$sm->execute()) {
             echo "something not ok <br>";
             echo "error-code: 9";
+            die();
         }
 
         return $sm->fetchAll(\PDO::FETCH_ASSOC);
@@ -252,6 +254,32 @@ class model {
         }
 
         return $sm->fetchAll(\PDO::FETCH_CLASS);
+    }
+
+
+    // ------------ uplaod article ------------
+
+    function uploadArticle($title, $par, $author, $img) {
+        // first check img
+        $errors = [];
+
+        $target_dir = "img/";
+        $target_file = $target_dir . basename($img['a_img']['name']);
+        if (getimagesize($img["a_img"]["tmp_name"])) {
+            array_push($errors, "not img");
+        }
+
+        if (!file_exists($target_file)) {
+            if (!$errors) {
+                if (!move_uploaded_file($img['img']['name'], $target_file)) {
+                    array_push($errors, "img");
+                }
+            }
+        }
+
+        $title = htmlspecialchars($title);
+        $par = htmlspecialchars($par);
+        $author = htmlspecialchars($author);
     }
 
     // ------------ login user ------------

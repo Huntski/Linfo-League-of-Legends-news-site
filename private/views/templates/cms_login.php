@@ -8,16 +8,18 @@
     <link rel="stylesheet" href="css/cms.css">
 </head>
 <body class="preload">
-    <form method="post" action="./admin">
-        <h1>cms login</h1>
-        <input type="password" name="passw" placeholder="Password.." maxlength="60" autofocus>
-        <input type="submit" value="login to cms">
-        <?php
-            if ($incorrect) {
-                echo "<p>incorrect password</p>";
-            }
-        ?>
-    </form>
+    <main class="vertical-center">
+        <form method="post" action="./admin" class="login">
+            <h1>Login to cms</h1>
+            <input type="password" name="passw" placeholder="Password.." maxlength="60" autofocus autocomplete='off' spellcheck='false' autocorrect='off' class="inp_bottom">
+            <input type="submit" value="login" class="btn_submit">
+            <?php
+                if ($incorrect) {
+                    echo "<p>incorrect password</p>";
+                }
+            ?>
+        </form>
+    </main>
 </body>
 
     <script type="text/javascript">

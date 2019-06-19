@@ -8,7 +8,7 @@ class NewsController {
         define("LIST_LIMIT", 6);
 
         if ($page <= 1) {
-            $offset = $page;
+            $offset = 0;
         } else {
             $offset = $page * LIST_LIMIT - LIST_LIMIT;
         }

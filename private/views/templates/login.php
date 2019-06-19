@@ -1,11 +1,10 @@
 <main class="flex">
-
-    <div class="active-msg mobile" style="display: none;">
+    <div class="mobile-msg">
         <h1>Welcome back</h1>
-        <h2>Login to Linfo to unlock all content and premium features like articles and events that Linfo has to over.</h2>
+        <h2>Login to linfo.</h2>
     </div>
     <form method="post" action="<?= $router->getCoreUrl(); ?>login" class="form-default">
-        <input name="email" type="email" class="inp-open" placeholder="Email.." autofocus>
+        <input name="email" type="email" class="inp-open" placeholder="Email.." autofocus autocomplete="off">
         <input type="password" name="passw" autocomplete="on" class="inp-open" placeholder="Password..">
         <input type="submit" class="btn-active" value="login">
         <p>Don't have a account? <br><a href="./register">Register <span style="color: #ffc45f">here</span></a></p>

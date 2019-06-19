@@ -82,7 +82,7 @@ table {
 
 /* remove scrollbar */
 
-::-webkit-scrollbar { display: none; }
+::-webkit-scrollbar { display: none !important; }
 
 @font-face {
 	font-family: "Beaufort";
@@ -247,18 +247,20 @@ input::placeholder::first-letter {
 	max-width: 500px;
 }
 
-.active-msg h1 {
+.active-msg h1, .mobile-msg h1 {
 	font-family: "Beaufort";
 	font-size: 3.5vw;
 	color: #FFC45F;
 	margin-bottom: 10px;
 }
 
-.active-msg  h2 {
+.active-msg  h2, .mobile-msg h2 {
 	font-size: 1.6vw;
 	color: #e2e2e2;
 	line-height: 1.5;
 }
+
+.mobile-msg { display: none; }
 
 .avatar {
 	width: 60px;
@@ -285,9 +287,9 @@ header {
 	width: 100%;
 }
 
-header * {
+/* header * {
 	z-index: 1;
-}
+} */
 
 nav a {
 	position: relative;
@@ -621,6 +623,8 @@ article h1 {
 article h2 {
 	color: #fff;
 	font-size: 1.1em;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 article img {
@@ -976,17 +980,19 @@ footer p:nth-child(2) {
 		margin: 0;
 		padding: 0;
 		text-align: center;
+		display: none;
 	}
 
-	.active-msg h1 {
-		font-size: 40px;
+	.mobile-msg { display: block; text-align: center; }
+
+	.mobile-msg h1 {
+		font-size: 60px;
+		margin: 50px 0;
 	}
 
-	.active-msg h2 {
+	.mobile-msg h2 {
 		font-size: 27px;
 	}
-
-	.mobile-msg { display: block; }
 
 	/* .active-msg  */
 
@@ -1013,7 +1019,6 @@ footer p:nth-child(2) {
 	header {
 		background: #17456D;
 		border-bottom: solid 1px #000;
-		z-index: 1;
 	}
 
 	header * {
@@ -1087,7 +1092,6 @@ footer p:nth-child(2) {
 
 	.article-active button {
 		float: left;
-		z-index: 1;
 	}
 
 	.article-active img {

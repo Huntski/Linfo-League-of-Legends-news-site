@@ -17,7 +17,7 @@ if (isset($_SESSION['userid'])) {
 }
 
 
-// var_dump($routes);
+// ($routes);
 
 $page = (string)explode('-', $routes[0])[0];
 

@@ -9,7 +9,7 @@ class template_engine {
 
         if (!count($data)) {echo "no data found";die();}
 
-        include "templates/header.php";
+        if ($data[1] !== "nohead") include "templates/header.php";;
 
         switch ($data[0]) {
             case "news":
@@ -67,6 +67,6 @@ class template_engine {
                 break;
         }
 
-        include "templates/footer.php";
+        if ($data[1] !== "nohead") include "templates/footer.php";
     }
 }

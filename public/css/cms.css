@@ -90,6 +90,8 @@ table {
 	font-weight: 700;
 }
 
+* { outline: none !important; }
+
 html {
 	position: relative;
 	height: 100%;
@@ -98,8 +100,6 @@ html {
 
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background: #0e2a42;
-	color: #fff;
 	height: 100%；
 }
 
@@ -112,63 +112,166 @@ body {
 
 /* ------------ layout css ------------ */
 
-.navigation {
-	margin: 0 auto;
-	text-align: center;
-	background: #16446c;
-	width: 500px;
+.orange {
+	color: #ff9949 !important;
 }
 
-.navigation * {
-	display: inline-block;
-	margin: 0;
-	padding: 0;
+
+img {
+	width: 100%;
+}
+
+button, input[type=submit] {
+	cursor: pointer;
+}
+
+button img {
+	width: 100%;
+}
+
+/* navigation */
+
+.navigation {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+}
+
+.navigation button {
+	margin-bottom: 15px;
+	width: 40px;
+	background: none;
+	border: none;
+	transition: margin .3s ease;
+}
+.navigation button:hover {
+	margin-left: -5px;
+}
+
+.navigation button.focus {
+	margin-left: -5px !important;
+}
+
+
+main {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	/* flex-direction: column; */
+	margin-top: 100px;
+}
+
+main.vertical-center { align-items: center; }
+
+h1 {
+	color: #000;
+	font-size: 1.6em;
+	font-weight: 700;
 }
 
 form {
-	display: inline-block;
-	margin: 0 auto;
-	background: #195182;
-	text-align: center;
-	padding: 60px 0;
+	line-height: 1.7;
+}
+
+form {
+	background: #fff;
+	color: #eeeeee;
+}
+
+.cms_form {
+	position: relative;
+	width: 400px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+	margin-right: 200px;
+}
+
+textarea {
+	resize: none;
+	margin-top: 20px;
+	border: solid 1px #707070;
+	border-radius: 5px;
+	font-size: .8em;
+	padding: 8px;
+}
+
+input { outline: none; }
+
+.inp_bottom {
+	width: 300px;
+	padding: 3px 0;
+	margin-top: 20px;
+	font-size: 1em;
+	font-weight: 600;
+	border: none;
+	border-bottom: solid 1px #707070;
+	min-width: 200px;
+}
+.inp_bottom::placeholder {
+	color: #707070;
+}
+
+.btn_submit {
+	width: 120px;
+	margin-top: 40px;
+	display: block;
+	border-radius: 20px;
+	background: #2677BE;
+	border: none;
+	color: #fff;
+	font-size: 1em;
+	padding: 8px 30px;
+	text-transform: capitalize;
+}
+
+.upload_label {
 	margin-top: 30px;
 }
 
-form * { display: block; margin: 23px auto; }
-
-form h1 {
-	font-family: "Beaufort";
-	font-weight: 700;
-	font-size: 1.5em;
-	text-transform: uppercase;
-	color: #ffa125;
+.upload_label *:not(img) {
+	display: inline-block;
+	vertical-align: middle;
+	color: #707070;
 }
 
-form input[type=password] {
-	padding: 16px 25px;
-	border: none;
-}
-
-form input[type=submit] {
-	padding: 9px 15px;
-	text-transform: uppercase;
-	font-weight: 600;
-	border: none;
-	background: #ffae44;
-	color: #195182;
-	border-bottom: solid 5px #e49125;
+.upload_label div {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: solid 1px #707070;
+	padding: 10px;
 	cursor: pointer;
-	transition: 3s ease;
+	margin-right: 10px;
 }
 
-form input[type=submit]:active {
-	margin-top: 26px;
-	border-bottom-width: 2px;
+.ui-select{width: 100%}
+
+/* remove arrow from select */
+select::-ms-expand { display: none; }
+select { -webkit-appearance: none; appearance: none; }
+@-moz-document url-prefix() { select { width: 110%; background-position: right 30px center !important; border: none !important; } }
+
+select {
+	margin-top: 30px;
+	padding: 10px 20px;
+	color: #fff;
+	text-align: center;
+	font-size: 1.04em;
+	width: 150px;
+	cursor: pointer;
+	transition: filter .2s;
 }
 
-form p {
+select * { outline: none; border: none; }
+
+
+select:nth-child(2) { background: #63A6FF; }
+select:nth-child(3) {
 	position: absolute;
-	margin: 0 auto;
-	left: 0;
-	right: 0;
+	left: 170px;
+	top: 43px;
+	background: #FF9949;
 }
+select:nth-child(4) { background: #2677BE; }
