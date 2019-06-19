@@ -31,7 +31,7 @@
             foreach ($allArticles as $article_info):
                 if ($article_info != $active_article) {
                     $subtitle = explode(" ", $article_info->a_par);
-                    count($subtitle) >= 6 ? $sub_limit = 6 : $sub_limit = count($subtitle);
+                    count($subtitle) >= 5 ? $sub_limit = 5 : $sub_limit = count($subtitle);
                     $article_par = "";
                     for ($i = 0; $i < $sub_limit; $i++) {
                         $article_par .= $subtitle[$i] . " ";

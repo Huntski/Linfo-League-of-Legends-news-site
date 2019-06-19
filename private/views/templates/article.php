@@ -6,13 +6,20 @@
 
 <main>
     <div class="view-article">
-        <div class="article-img">
-            <img src="img/<?= $article_info->a_img_links ?>" alt=" ">
-        </div>
 
         <div class="article-content">
             <h1><?= $article_info->a_title ?></h1>
-            <p><?= $article_info->a_par ?></p>
+            <div class="article-img">
+                <img src="img/<?= $article_info->a_img_links ?>" alt=" ">
+            </div>
+            <p><?php
+            $a_par = $article_info->a_par;
+
+            $a_par = str_replace('&lt;', '<', $a_par);
+            $a_par = str_replace('&gt;', '>', $a_par);
+
+            echo $a_par;
+            ?></p>
         </div>
 
         <form method="post" action="./article-<?= $article_info->a_id ?>">
@@ -23,7 +30,7 @@
             <div class="avatar">
                 <img src="img/avatar/<?= $user_info->user_avatar ?>" alt=" ">
             </div>
-            <textarea class='textarea-open' name="comment" cols="50" rows="3" maxlength="250" placeholder="comment. ."></textarea>
+            <textarea class='textarea-open' name="comment" cols="39" rows="3" maxlength="250" placeholder="comment. ."></textarea>
             <input type="submit" class="btn-active" value="comment">
         </form>
 

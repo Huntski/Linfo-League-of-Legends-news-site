@@ -256,30 +256,36 @@ class model {
         return $sm->fetchAll(\PDO::FETCH_CLASS);
     }
 
-
     // ------------ uplaod article ------------
 
     function uploadArticle($title, $par, $author, $img) {
-        // first check img
-        $errors = [];
 
         $target_dir = "img/";
         $target_file = $target_dir . basename($img['a_img']['name']);
-        if (getimagesize($img["a_img"]["tmp_name"])) {
-            array_push($errors, "not img");
-        }
-
         if (!file_exists($target_file)) {
-            if (!$errors) {
-                if (!move_uploaded_file($img['img']['name'], $target_file)) {
-                    array_push($errors, "img");
-                }
+            if (!move_uploaded_file($img['a_img']['tmp_name'], $target_file)) {
+                array_push($errors, "img");
             }
         }
 
         $title = htmlspecialchars($title);
         $par = htmlspecialchars($par);
         $author = htmlspecialchars($author);
+        $img = $img['a_img']['name'];
+
+        $db = dbConnect();
+
+        $sql = "INSERT INTO linfo_articles (a_title, a_author, a_img_links, a_par) VALUES ('$title', '$author', '$img', '$par')";
+
+        $sm = $db->prepare($sql);
+
+        if (!$sm->execute()) {
+            echo "something not ok <br>";
+            echo "error-code: 76";
+            die();
+        }
+
+        return true;
     }
 
     // ------------ login user ------------
@@ -560,25 +566,5 @@ class model {
 
     // ------------  * cms settings *  ------------
 
-    function addArticle($title, $par, $img) {
 
-        $title = htmlspecialchars($title);
-        $par = htmlspecialchars($par);
-
-        if ($img['size']) {
-            $img_ok = 1;
-        }
-
-        $target_dir = "img/";
-        $target_file = $target_dir . basename($img['a_img']['tnp_name']);
-        // if () {}
-
-        $db = dbConnect();
-
-        $sql = "INSERT INTO linfo_articles (a_title, a_par, a_img_links, a_author) VALUES (?, ?, ?)";
-
-        $sm = $db->prepare($sql);
-
-        $data = array($title, $par, $target_file);
-    }
 }

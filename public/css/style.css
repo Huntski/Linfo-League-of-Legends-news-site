@@ -189,6 +189,7 @@ input::placeholder::first-letter {
 	transition: all .9s;
 	border-bottom-width: 4px;
 	resize: none;
+	white-space:pre-wrap;
 }
 .textarea-open::placeholder {
 	color: #ffffffaa;
@@ -616,8 +617,11 @@ article div:nth-child(1) {
 
 article h1 {
 	color: #FFC45F;
-	font-size: 1.3em;
+	font-size: 1.2em;
 	margin-bottom: 2px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 article h2 {
@@ -625,11 +629,14 @@ article h2 {
 	font-size: 1.1em;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 article img {
-	height: 160% !important;
-	width: auto !important;
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover;
 	transition: .3s;
 }
 
@@ -681,9 +688,10 @@ article img {
 
 .view-article h1 {
 	color: #F7A71F;
-	font-size: 1.3em;
+	font-size: 1.9em;
+	text-align: center;
 	font-family: "Beaufort";
-	margin: 30px;
+	margin: 30px 0 10px 0;
 }
 
 .view-article p {
