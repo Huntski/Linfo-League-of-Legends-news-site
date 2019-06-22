@@ -288,6 +288,28 @@ class model {
         return true;
     }
 
+    // ------------ uplaod event ------------
+
+    function uploadEvent($t1, $t2, $filter = 'LCS', $location, $date) {
+
+        $db = dbConnect();
+
+        $t1_img = $t1 . ".png";
+        $t2_img = $t2 . ".png";
+
+        $sql = "INSERT INTO linfo_events (e_team1, e_team2, e_team1_img, e_team2_img, e_filter, e_location, e_date) VALUES ($t1, $t2, $t1_img, $t2_img, $filter, $location, $date)";
+
+        $sm = $db->prepare($sql);
+
+        if (!$sm->execute()) {
+            echo "something not ok <br>";
+            echo "error-code: 46";
+            die();
+        }
+
+        return true;
+    }
+
     // ------------ login user ------------
 
     function loginUser($email, $passw) {

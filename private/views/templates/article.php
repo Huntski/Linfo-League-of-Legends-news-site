@@ -45,6 +45,7 @@
                 // I know this code is rly badly structured BUT IT WORKS so I am not changing it..
 
                 $comment_user = $model->getUserInformation($comment->user_id);
+                echo "kanker";
                 echo "
                 <div class='comment'>
                     <div class='user'>

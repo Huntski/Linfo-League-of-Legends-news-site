@@ -2,6 +2,13 @@
 * author: Wieb uwu
 */
 
+// remove preload
+
+window.onload = function () {
+    document.querySelector('body').classList.remove('preload');
+    console.log('Page Preloaded');
+}
+
 // --------------------------------------------------------------------
 
 let btn_nav_article = document.querySelector('.btn_nav_article');

@@ -58,6 +58,7 @@ class template_engine {
                 break;
 
             case "cms":
+                $errors = $data[2];
                 include "templates/cms.php";
                 break;
 

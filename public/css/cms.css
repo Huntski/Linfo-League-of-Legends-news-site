@@ -143,15 +143,21 @@ button img {
 	background: none;
 	border: none;
 	transition: margin .3s ease;
+	filter: brightness(80%);
 }
 .navigation button:hover {
 	margin-left: -5px;
+	filter: brightness(100%);
+}
+
+.navigation button:first-child {
+	filter: brightness(100%);
 }
 
 .navigation button.focus {
 	margin-left: -5px !important;
+	filter: brightness(100%);
 }
-
 
 main {
 	display: flex;
@@ -211,6 +217,14 @@ input { outline: none; }
 }
 .inp_bottom::placeholder {
 	color: #707070;
+}
+
+.error {
+	border-color: #ff5050 !important;
+}
+
+.error-msg {
+	color: #ff5050;
 }
 
 .btn_submit {
